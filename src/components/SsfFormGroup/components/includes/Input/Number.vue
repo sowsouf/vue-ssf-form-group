@@ -45,7 +45,11 @@
 
         computed: {
             active() {
-                return this.focused || this.value || parseInt(this.value) === 0
+                return this.focused || this.value || this.formatted === 0
+            },
+
+            formatted() {
+                return this.format(this.value)
             }
         },
 
@@ -57,6 +61,10 @@
 
         methods: {
 
+            format(value) {
+                return (Math.round(value) === value ? parseInt(value) : parseFloat(value))
+            },
+
             updateValue(direction = null) {
                 if (direction === 1 && ((this.max && this.value + this.step <= this.max) || !this.max))
                     this.$emit('input', this.value + this.step)
@@ -64,7 +72,7 @@
                     this.$emit('input', this.value - this.step)
                 else
                     this.$nextTick(() => {
-                        this.$emit('input', parseInt(this.$refs.inputComponent.value))
+                        this.$emit('input', this.format(this.$refs.inputComponent.value))
                     })
             }
         }
