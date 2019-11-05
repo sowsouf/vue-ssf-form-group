@@ -17,7 +17,7 @@
     <!-- TYPE : checkbox -->
     <ssf-input-checkbox v-else-if="type === 'checkbox'" :name="name" :required="required" :label="label"
                         :disabled="disabled" :value="value" @change="$emit('change')" @input="updateValue"
-                        ref="inputComponent" input-:class="inputClass"/>
+                        ref="inputComponent" input-class="inputClass"/>
 
     <!-- TYPE : date -->
     <ssf-input-date v-else-if="type === 'date'" :name="name" :required="required" :label="label"
