@@ -7,7 +7,8 @@
 
       <ssf-input :type="type" :label="label" :name="name" :value="value" :required="required" :disabled="disabled"
                  :items="optionItems" :field="optionField" :placeholder="placeholder" :autocomplete="autocomplete"
-                 :step="step" :min="min" :max="max" @input="updateValue" :inline="inline" ref="input" :input-class="inputClass" v-else/>
+                 :step="step" :min="min" :max="max" @input="updateValue" :inline="inline" ref="input"
+                 :input-class="inputClass" v-else/>
 
     </div>
   </div>
@@ -111,7 +112,10 @@
             },
 
             updateValue(value) {
-                this.$emit('input', value)
+                if (!this.disabled) {
+                    this.$emit('change')
+                    this.$emit('input', value)
+                }
                 this.$forceUpdate()
             }
         }
