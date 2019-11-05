@@ -67,10 +67,11 @@
             },
 
             updateValue(direction = null) {
-                if (direction === 1 && ((this.max && this.value + this.step <= this.max) || !this.max))
-                    this.$emit('input', this.value + this.step)
-                else if (direction === -1 && ((this.min && this.value - this.step >= this.min) || !this.min))
-                    this.$emit('input', this.value - this.step)
+                let value = this.format(this.value)
+                if (direction === 1 && ((this.max && value + this.step <= this.max) || !this.max))
+                    this.$emit('input', value + this.step)
+                else if (direction === -1 && ((this.min && value - this.step >= this.min) || !this.min))
+                    this.$emit('input', value - this.step)
                 else
                     this.$nextTick(() => {
                         this.$emit('input', this.format(this.$refs.inputComponent.value))
