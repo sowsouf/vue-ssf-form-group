@@ -6,13 +6,15 @@
     {{ test }}
 
     <ssf-form-group type="hidden" name="text" v-model="test.text" :required="true" :disabled="false"
-                    :placeholder="false" :autocomplete="true" label="Text input"/>
+                    :placeholder="false" :autocomplete="true"/>
+<!--                    :placeholder="false" :autocomplete="true" label="Text input"/>-->
 
     <ssf-form-group type="text" name="text" v-model="test.text" :required="true" :disabled="false" :placeholder="false"
                     :autocomplete="true" label="Text input"/>
 
     <ssf-form-group type="password" name="password" v-model="test.password" :required="true" :disabled="false"
-                    :placeholder="false" :autocomplete="true" label="Password input"/>
+                    :placeholder="false" :autocomplete="true"/>
+<!--                    :placeholder="false" :autocomplete="true" label="Password input"/>-->
 
     <ssf-form-group type="checkbox" name="checkbox" v-model="test.checkbox" :required="true" :disabled="false"
                     :placeholder="false" :autocomplete="true" label="Checkbox input"/>
@@ -28,7 +30,8 @@
                     :placeholder="false" :autocomplete="true" label="Switch input"/>
 
     <ssf-form-group name="select" v-model="test.select" :select="true" :option-items="items"
-                    option-field="id" col="col-12" label="Select input"/>
+                    option-field="id" col="col-12"/>
+<!--                    option-field="id" col="col-12" label="Select input"/>-->
 
     <ssf-form-group type="radio" name="radio" v-model="test.radio" :option-items="items" option-field="id"
                     label="Radio input"/>

@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container ssf-form-number">
-    <label v-html="label" :class="{active}"></label>
+    <label v-html="label" :class="{active}" v-if="label"></label>
 
     <!-- TYPE : password -->
     <input type="number" :id="name" :name="name" :value="value" class="ssf-form-control" :step="step" :min="min"

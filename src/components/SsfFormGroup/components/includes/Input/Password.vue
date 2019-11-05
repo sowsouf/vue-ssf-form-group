@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container ssf-form-password">
-    <label v-html="label" :class="{active}"></label>
+    <label v-html="label" :class="{active}" v-if="label"></label>
 
     <!-- TYPE : password -->
     <input :type="inputType" :id="name" :name="name" :value="value" class="ssf-form-control"

@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container">
-    <label v-html="label" :class="{active}"></label>
+    <label v-html="label" :class="{active}" v-if="label"></label>
     <div class="ssf-select-container" @click="toggleShowItems" @dblclick="onDoubleClick">
 
       <div class="ssf-form-control">
@@ -8,7 +8,7 @@
         <div class="ssf-select-input-container" :class="{open: show.items}" :style="{height: ssfContainerHeight}">
           <div class="ssf-text-container" :class="{open: show.items}" ref="ssfTextContainer">
             <span v-if="value" :value="value">{{ value }}</span>
-            <span v-else-if="show.items" class="ssf-select-option-title">Choisir une valeur... {{ required ? '(*)' : '' }}</span>
+            <span v-else-if="show.items || !label" class="ssf-select-option-title">Choisir une valeur... {{ required ? '(*)' : '' }}</span>
           </div>
           <div class="ssf-value-container">
             <ul v-show="show.items" id="ssfValueList" ref="ssfValueList">

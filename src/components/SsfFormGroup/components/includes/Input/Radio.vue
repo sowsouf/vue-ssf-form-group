@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container">
-    <label v-html="label"></label>
+    <label v-html="label" v-if="label"></label>
 
     <label v-for="item in items" :class="{'ssf-radio-inline': inline}" class="ssf-radio-button">
       <input type="radio" :id="name" :name="name" :value="(item[field] || item)" class="ssf-form-control"

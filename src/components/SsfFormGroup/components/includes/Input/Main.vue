@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container">
-    <label v-html="label" :class="{active}" v-if="isDefault()"></label>
+    <label v-html="label" :class="{active}" v-if="isDefault() && label"></label>
 
     <!-- TYPE : text -->
     <input :type="type" :id="name" :name="name" :value="value" class="ssf-form-control" :required="required"

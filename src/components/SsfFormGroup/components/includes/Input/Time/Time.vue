@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container">
-    <label v-html="label" :class="{active}"></label>
+    <label v-html="label" :class="{active}" v-if="label"></label>
     <div class="ssf-date-container" @click="toggleShowItems">
       <div class="ssf-form-control">
         <div class="ssf-text-container" ref="ssfTextContainer">
