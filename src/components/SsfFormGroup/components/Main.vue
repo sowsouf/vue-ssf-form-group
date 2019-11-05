@@ -3,11 +3,11 @@
     <div :class="containerClass()">
 
       <ssf-select :name="name" :label="label" :required="required" :value="value" :items="optionItems"
-                  :field="optionField" @input="updateValue" v-if="select"/>
+                  :field="optionField" @input="updateValue" :input-class="inputClass" v-if="select"/>
 
       <ssf-input :type="type" :label="label" :name="name" :value="value" :required="required" :disabled="disabled"
                  :items="optionItems" :field="optionField" :placeholder="placeholder" :autocomplete="autocomplete"
-                 :step="step" :min="min" :max="max" @input="updateValue" :inline="inline" ref="input" v-else/>
+                 :step="step" :min="min" :max="max" @input="updateValue" :inline="inline" ref="input" :input-class="inputClass" v-else/>
 
     </div>
   </div>
@@ -34,10 +34,11 @@
             icon          : { type: String, required: false, default: null },
 
             /* COMMONS */
-            name    : { type: String, required: true },
-            label   : { type: String, required: false },
-            value   : { required: false, default: null },
-            required: { type: Boolean, required: false, default: false },
+            name      : { type: String, required: true },
+            label     : { type: String, required: false },
+            value     : { required: false, default: null },
+            required  : { type: Boolean, required: false, default: false },
+            inputClass: { type: String, required: false, default: '' },
 
             /* INPUT */
             type        : { type: String, required: false, default: 'text' },

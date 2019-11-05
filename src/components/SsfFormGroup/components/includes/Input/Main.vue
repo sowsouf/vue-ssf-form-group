@@ -3,7 +3,7 @@
     <label v-html="label" :class="{active}" v-if="isDefault() && label"></label>
 
     <!-- TYPE : text -->
-    <input :type="type" :id="name" :name="name" :value="value" class="ssf-form-control" :required="required"
+    <input :type="type" :id="name" :name="name" :value="value" class="ssf-form-control" :class="inputClass" :required="required"
            :disabled="disabled" :placeholder="`${placeholder ? label : ''}`" @change="$emit('change')"
            :autocomplete="`${autocomplete ? autocomplete === true ? name : autocomplete : 'off'}`"
            @input="updateValue()" @focusin="focused = true" @focusout="focused = false" ref="inputComponent"
@@ -12,36 +12,36 @@
     <!-- TYPE : password -->
     <ssf-input-password v-else-if="type === 'password'" :name="name" :value="value" :required="required" :label="label"
                         :disabled="disabled" :placeholder="placeholder" @change="$emit('change')"
-                        :autocomplete="autocomplete" @input="updateValue" ref="inputComponent"/>
+                        :autocomplete="autocomplete" @input="updateValue" ref="inputComponent" :class="inputClass"/>
 
     <!-- TYPE : checkbox -->
     <ssf-input-checkbox v-else-if="type === 'checkbox'" :name="name" :required="required" :label="label"
                         :disabled="disabled" :value="value" @change="$emit('change')" @input="updateValue"
-                        ref="inputComponent"/>
+                        ref="inputComponent" :class="inputClass"/>
 
     <!-- TYPE : date -->
     <ssf-input-date v-else-if="type === 'date'" :name="name" :required="required" :label="label"
                     :disabled="disabled" :value="value" @change="$emit('change')" @input="updateValue"
-                    ref="inputComponent"/>
+                    ref="inputComponent" :class="inputClass"/>
 
     <!-- TYPE : time -->
     <ssf-input-time v-else-if="type === 'time'" :name="name" :required="required" :label="label"
                     :disabled="disabled" :value="value" @change="$emit('change')" @input="updateValue"
-                    ref="inputComponent"/>
+                    ref="inputComponent" :class="inputClass"/>
 
     <!-- TYPE : number -->
     <ssf-input-number v-else-if="type === 'number'" :name="name" :value="value" :required="required" :label="label"
                       :disabled="disabled" :placeholder="placeholder" @change="$emit('change')" :step="step" :min="min"
-                      :max="max" :autocomplete="autocomplete" @input="updateValue" ref="inputComponent"/>
+                      :max="max" :autocomplete="autocomplete" @input="updateValue" ref="inputComponent" :class="inputClass"/>
 
     <!-- TYPE : switch -->
     <ssf-input-switch v-else-if="type === 'switch'" :name="name" :required="required" :label="label" :value="value"
-                      :disabled="disabled" @change="$emit('change')" @input="updateValue" ref="inputComponent"/>
+                      :disabled="disabled" @change="$emit('change')" @input="updateValue" ref="inputComponent" :class="inputClass"/>
 
     <!-- TYPE : radio -->
     <ssf-input-radio v-else-if="type === 'radio'" :name="name" :required="required" :label="label" :value="value"
                      :items="items" :field="field" :disabled="disabled" @change="$emit('change')" @input="updateValue"
-                     :inline="inline" ref="inputComponent"/>
+                     :inline="inline" ref="inputComponent" :class="inputClass"/>
 
   </div>
 </template>
@@ -72,6 +72,7 @@
             label   : { type: String, required: false },
             value   : { required: false, default: null },
             required: { type: Boolean, required: false, default: false },
+            inputClass: { type: String, required: false, default: '' },
 
             /* INPUT */
             type        : { type: String, required: false, default: 'text' },

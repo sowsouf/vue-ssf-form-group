@@ -3,11 +3,11 @@
     <label v-html="label" :class="{active}" v-if="label"></label>
 
     <!-- TYPE : password -->
-    <input type="number" :id="name" :name="name" :value="value" class="ssf-form-control" :step="step" :min="min"
-           :max="max" :required="required" :disabled="disabled" :placeholder="`${placeholder ? label : ''}`"
-           @change="$emit('change')" @input="updateValue" @focusin="focused = true" @focusout="focused = false"
-           :autocomplete="`${autocomplete ? autocomplete === true ? name : autocomplete : 'off'}`"
-           ref="inputComponent">
+    <input type="number" :id="name" :name="name" :value="value" class="ssf-form-control" :class="inputClass"
+           :step="step" :min="min" :max="max" :required="required" :disabled="disabled"
+           :placeholder="`${placeholder ? label : ''}`" @change="$emit('change')" @input="updateValue"
+           @focusin="focused = true" @focusout="focused = false"
+           :autocomplete="`${autocomplete ? autocomplete === true ? name : autocomplete : 'off'}`" ref="inputComponent">
 
     <div class="ssf-number-control">
       <div class="control control-more" @click="updateValue(1)">
@@ -27,10 +27,11 @@
         name : "SsfInputNumber",
         props: {
             /* COMMONS */
-            name    : { type: String, required: true },
-            label   : { type: String, required: false },
-            value   : { required: false, default: null },
-            required: { type: Boolean, required: false, default: false },
+            name      : { type: String, required: true },
+            label     : { type: String, required: false },
+            value     : { required: false, default: null },
+            required  : { type: Boolean, required: false, default: false },
+            inputClass: { type: String, required: false, default: '' },
 
             /* INPUT */
             type        : { type: String, required: false, default: 'text' },

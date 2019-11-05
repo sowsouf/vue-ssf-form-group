@@ -3,7 +3,7 @@
     <label v-html="label" :class="{active}" v-if="label"></label>
 
     <!-- TYPE : password -->
-    <input :type="inputType" :id="name" :name="name" :value="value" class="ssf-form-control"
+    <input :type="inputType" :id="name" :name="name" :value="value" class="ssf-form-control" :class="inputClass"
            :required="required" :disabled="disabled" :placeholder="`${placeholder ? label : ''}`"
            @change="$emit('change')" @input="updateValue()" @focusin="focused = true" @focusout="focused = false"
            :autocomplete="`${autocomplete ? autocomplete === true ? name : autocomplete : 'off'}`"
@@ -23,10 +23,11 @@
         name : "SsfInputPassword",
         props: {
             /* COMMONS */
-            name    : { type: String, required: true },
-            label   : { type: String, required: false },
-            value   : { required: false, default: null },
-            required: { type: Boolean, required: false, default: false },
+            name      : { type: String, required: true },
+            label     : { type: String, required: false },
+            value     : { required: false, default: null },
+            required  : { type: Boolean, required: false, default: false },
+            inputClass: { type: String, required: false, default: '' },
 
             /* INPUT */
             type        : { type: String, required: false, default: 'text' },

@@ -2,12 +2,13 @@
   <div class="ssf-input-container">
     <label v-html="label" :class="{active}" v-if="label"></label>
     <div class="ssf-date-container" @click="toggleShowItems" @dblclick="onDoubleClick">
-      <div class="ssf-form-control">
+      <div class="ssf-form-control" :class="inputClass">
         <div class="ssf-text-container" ref="ssfTextContainer">
           <span v-if="value" :value="value">{{ value }}</span>
         </div>
         <div class="ssf-date-input-container" :class="{open: show.items}" :style="{height: ssfContainerHeight}">
-          <ssf-calendar ref="calendarContainer" :value="value ? helpers.moment(value, format).format('YYYY-MM-DD') : null"
+          <ssf-calendar ref="calendarContainer"
+                        :value="value ? helpers.moment(value, format).format('YYYY-MM-DD') : null"
                         v-show="show.items" @selected="onSelected" @click.stop="removeEvent"/>
         </div>
       </div>
@@ -28,10 +29,11 @@
 
         props: {
             /* COMMONS */
-            name    : { type: String, required: true },
-            label   : { type: String, required: false },
-            value   : { required: false, default: null },
-            required: { type: Boolean, required: false, default: false },
+            name      : { type: String, required: true },
+            label     : { type: String, required: false },
+            value     : { required: false, default: null },
+            required  : { type: Boolean, required: false, default: false },
+            inputClass: { type: String, required: false, default: '' },
 
             /* DATE */
             format: { type: String, required: false, default: 'DD/MM/YYYY' },

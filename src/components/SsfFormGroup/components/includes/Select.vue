@@ -3,7 +3,7 @@
     <label v-html="label" :class="{active}" v-if="label"></label>
     <div class="ssf-select-container" @click="toggleShowItems" @dblclick="onDoubleClick">
 
-      <div class="ssf-form-control">
+      <div class="ssf-form-control" :class="inputClass">
 
         <div class="ssf-select-input-container" :class="{open: show.items}" :style="{height: ssfContainerHeight}">
           <div class="ssf-text-container" :class="{open: show.items}" ref="ssfTextContainer">
@@ -36,10 +36,11 @@
 
         props: {
             /* COMMONS */
-            name    : { type: String, required: true },
-            label   : { type: String, required: false },
-            value   : { required: false, default: null },
-            required: { type: Boolean, required: false, default: false },
+            name      : { type: String, required: true },
+            label     : { type: String, required: false },
+            value     : { required: false, default: null },
+            required  : { type: Boolean, required: false, default: false },
+            inputClass: { type: String, required: false, default: '' },
 
             /* SELECT */
             items: { type: Array, required: true },
