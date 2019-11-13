@@ -245,7 +245,7 @@
     position: relative;
     width: 375px;
     max-width: 100vw;
-    box-sizing: border-box !important;
+    box-sizing: border-box;
     border: 1px solid #ddd;
     user-select: none;
 
@@ -377,7 +377,7 @@
             }
 
             &.cell-hide {
-              opacity: 0 !important;
+              opacity: 0;
             }
 
             &.cell-previous-month {
@@ -416,7 +416,7 @@
         padding: 0;
 
         li {
-          list-style-type: none !important;
+          list-style-type: none;
           padding: 10px 0;
           cursor: pointer;
 
@@ -437,7 +437,7 @@
         box-sizing: border-box;
 
         li {
-          padding: 0 .75rem !important;
+          padding: 0 .75rem;
           height: 32px;
           display: flex;
           align-items: center;

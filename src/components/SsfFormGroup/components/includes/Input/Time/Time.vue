@@ -70,7 +70,7 @@
 
             getSsfContainerHeight() {
                 let element = this.$refs.clockContainer.$el
-                return element && element.offsetHeight > 0 ? `${element.offsetHeight}px !important` : 'inherit !important';
+                return element && element.offsetHeight > 0 ? `${element.offsetHeight}px` : 'inherit';
             },
 
             toggleShowItems() {
@@ -106,7 +106,7 @@
     top: 45px;
     left: 0;
     bottom: 0;
-    background: #FFF !important;
+    background: #FFF;
     z-index: 1051;
   }
 
@@ -120,13 +120,13 @@
     height: 100%;
     width: 100%;
     z-index: -1;
-    background: transparent !important;
-    cursor: default !important;
+    background: transparent;
+    cursor: default;
   }
 
   .ssf-value-container > ul {
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
   }
 
   .ssf-value-container li {
@@ -142,8 +142,8 @@
   }
 
   .ssf-value-item:hover {
-    background: #000 !important;
-    color: #FFF !important;
+    background: #000;
+    color: #FFF;
   }
 
   .ssf-value-item.selected {

@@ -93,7 +93,7 @@
 <style>
 
   .border-0 {
-    border: none !important;
+    border: none;
   }
 
   .home {

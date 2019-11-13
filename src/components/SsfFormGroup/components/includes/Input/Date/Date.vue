@@ -77,7 +77,7 @@
 
             getSsfContainerHeight() {
                 let element = this.$refs.calendarContainer.$el
-                return element && element.offsetHeight > 0 ? `${element.offsetHeight}px !important` : 'inherit !important';
+                return element && element.offsetHeight > 0 ? `${element.offsetHeight}px` : 'inherit';
             },
 
             toggleShowItems() {
@@ -124,9 +124,9 @@
     left: 0;
     /*right: 0;*/
     bottom: 0;
-    /*-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;*/
-    /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;*/
-    background: #FFF !important;
+    /*-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
+    /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
+    background: #FFF;
     z-index: 1051;
   }
 
@@ -140,8 +140,8 @@
     height: 100%;
     width: 100%;
     z-index: -1;
-    background: transparent !important;
-    cursor: default !important;
+    background: transparent;
+    cursor: default;
   }
 
   .ssf-value-container {
@@ -149,8 +149,8 @@
   }
 
   .ssf-value-container > ul {
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
   }
 
   .ssf-value-container li {
@@ -159,7 +159,7 @@
   }
 
   /*.ssf-text-container {
-    cursor: pointer !important;
+    cursor: pointer;
   }*/
 
   .ssf-text-container.open {
@@ -170,13 +170,13 @@
   }
 
   .ssf-value-item:hover {
-    background: #000 !important;
-    color: #FFF !important;
+    background: #000;
+    color: #FFF;
   }
 
   .ssf-value-item.selected {
     background: #ddd;
-    /*color: #FFF !important;*/
+    /*color: #FFF;*/
   }
 
   .ssf-date-option-title {

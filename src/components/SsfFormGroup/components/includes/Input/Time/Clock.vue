@@ -193,7 +193,7 @@
     height: 100px;
     width: 250px;
     max-width: 100vw;
-    box-sizing: border-box !important;
+    box-sizing: border-box;
     border: 1px solid #ddd;
     user-select: none;
 

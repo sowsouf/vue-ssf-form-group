@@ -172,14 +172,14 @@
 
   .ssf-form-group {
     position: relative;
-    width: 100% !important;
+    width: 100%;
 
     .ssf-form-control {
       font-size: 14px;
-      width: 100% !important;
-      padding: 14px 18px !important;
-      background-color: transparent !important;
-      min-height: 45px !important;
+      width: 100%;
+      padding: 14px 18px;
+      background-color: transparent;
+      min-height: 45px;
       box-sizing: border-box;
       border: 1px solid $defaultBorder;
       -webkit-border-radius: $defaultBorderRadius;
@@ -199,9 +199,9 @@
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus,
       &:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 0 white inset !important;
-        -moz-box-shadow: 0 0 0 0 white inset !important;
-        box-shadow: 0 0 0 0 white inset !important;
+        -webkit-box-shadow: 0 0 0 0 white inset;
+        -moz-box-shadow: 0 0 0 0 white inset;
+        box-shadow: 0 0 0 0 white inset;
       }
 
       .is-valid {
@@ -215,7 +215,7 @@
 
     label {
       position: absolute;
-      font-size: 13px !important;
+      font-size: 13px;
       top: 0;
       left: 0;
       right: 0;
@@ -226,7 +226,7 @@
       padding: 0 10px;
       color: #9e9e9e;
       /*font-weight: 300;*/
-      margin-left: 0 !important;
+      margin-left: 0;
       transition: all .25s;
       z-index: -1;
     }
@@ -236,17 +236,17 @@
       top: -8px;
       left: inherit;
       right: inherit;
-      margin-left: 15px !important;
-      height: 16px !important;
-      font-size: 10px !important;
+      margin-left: 15px;
+      height: 16px;
+      font-size: 10px;
       background-color: #fff;
       z-index: 1;
     }
 
     input.ssf-form-control, select.ssf-form-control {
-      -moz-appearance: none !important;
-      -webkit-appearance: none !important;
-      appearance: none !important;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
     }
 
     .ssf-form-password {
@@ -274,17 +274,17 @@
       position: relative;
 
       .ssf-form-control {
-        padding-right: 0 !important;
-        padding-left: 50px !important;
+        padding-right: 0;
+        padding-left: 50px;
       }
 
       label {
-        margin-left: 42px !important;
+        margin-left: 42px;
       }
 
       .ssf-form-control:focus + label,
       label.active {
-        margin-left: 42px !important;
+        margin-left: 42px;
       }
 
       .ssf-number-control {
@@ -369,7 +369,7 @@
     input[type=checkbox] {
 
       position: relative;
-      -webkit-appearance: none !important;
+      -webkit-appearance: none;
       border: 1px solid $defaultBorder;
       height: 20px;
       width: 20px;
@@ -381,9 +381,9 @@
 
       &:focus, &:active, &:hover {
         outline: 0;
-        -webkit-box-shadow: none !important;
-        -moz-box-shadow: none !important;
-        box-shadow: none !important;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
       }
 
       &:checked:before,
@@ -425,9 +425,9 @@
 
       &:focus, &:active, &:hover {
         outline: 0;
-        -webkit-box-shadow: none !important;
-        -moz-box-shadow: none !important;
-        box-shadow: none !important;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
       }
     }
 
@@ -467,8 +467,8 @@
     input[type=radio] {
 
       position: absolute;
-      -webkit-appearance: none !important;
-      -moz-appearance: none !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
       border: 1px solid $defaultBorder;
       height: 20px;
       width: 20px;
@@ -477,14 +477,14 @@
       border-radius: 50%;
       cursor: pointer;
       margin-left: -22px;
-      margin-top: 0 !important;
-      box-sizing: border-box !important;
+      margin-top: 0;
+      box-sizing: border-box;
 
       &:focus, &:active, &:hover {
         outline: 0;
-        -webkit-box-shadow: none !important;
-        -moz-box-shadow: none !important;
-        box-shadow: none !important;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
       }
 
       &:checked, .checked {
@@ -509,7 +509,7 @@
     }
 
     label:not(.ssf-radio-button) {
-      font-size: 13px !important;
+      font-size: 13px;
       /*display: flex;*/
       /*align-items: center;*/
       padding: 0 10px 10px;
@@ -553,31 +553,31 @@
     text-align: center;
     font-weight: 300;
     font-size: inherit;
-    height: 50px !important;
-    width: 100% !important;
+    height: 50px;
+    width: 100%;
     border-radius: 10px;
-    padding: 15px !important;
-    background-color: transparent !important;
+    padding: 15px;
+    background-color: transparent;
   }
 
   .time-picker .dropdown {
-    top: 100% !important;
+    top: 100%;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: none !important;
+    box-shadow: none;
     padding-bottom: 15px;
   }
 
   .time-picker .dropdown,
   .time-picker .dropdown .select-list {
-    width: 15em !important;
-    height: 20em !important;
+    width: 15em;
+    height: 20em;
   }
 
   .time-picker .dropdown ul::-webkit-scrollbar {
-    display: none !important;
+    display: none;
   }*/
 
 </style>
