@@ -15,11 +15,11 @@
               <li class="ssf-value-item" :class="{selected: item[field] === value}" v-if="items && field"
                   v-for="item in items"
                   @click.stop="onSelectedOption(item[field])">
-                {{ item[field] }}
+                {{ optionLabel ? item[optionLabel] : item[field] }}
               </li>
               <li class="ssf-value-item" :class="{selected: item === value}" v-else-if="items" v-for="item in items"
-                  @click.stop="onSelectedOption(item)">{{
-                item }}
+                  @click.stop="onSelectedOption(item)">
+                {{ item }}
               </li>
             </ul>
           </div>
@@ -43,8 +43,9 @@
             inputClass: { type: String, required: false, default: '' },
 
             /* SELECT */
-            items: { type: Array, required: true },
-            field: { type: String, required: false, default: null },
+            items      : { type: Array, required: true },
+            field      : { type: String, required: false, default: null },
+            optionLabel: { type: String, required: false, default: null },
         },
 
         computed: {

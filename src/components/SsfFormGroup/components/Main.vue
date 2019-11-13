@@ -3,12 +3,13 @@
     <div :class="containerClass()">
 
       <ssf-select :name="name" :label="label" :required="required" :value="value" :items="optionItems"
-                  :field="optionField" @input="updateValue" :input-class="inputClass" v-if="select"/>
+                  :field="optionField" :optionLabel="optionLabel" @input="updateValue" :input-class="inputClass"
+                  v-if="select"/>
 
       <ssf-input :type="type" :label="label" :name="name" :value="value" :required="required" :disabled="disabled"
                  :items="optionItems" :field="optionField" :placeholder="placeholder" :autocomplete="autocomplete"
                  :step="step" :min="min" :max="max" @input="updateValue" :inline="inline" ref="input"
-                 :input-class="inputClass" v-else/>
+                 :input-class="inputClass" :show-error="showError" v-else/>
 
     </div>
   </div>
@@ -51,6 +52,7 @@
             select     : { type: Boolean, required: false, default: false },
             optionItems: { type: Array, required: false },
             optionField: { type: String, required: false, default: null },
+            optionLabel: { type: String, required: false, default: null },
 
             /* RADIO */
             inline: { type: Boolean, required: false, default: false },
@@ -59,6 +61,9 @@
             step: { type: Number, required: false, default: 1 },
             min : { type: Number, required: false, default: null },
             max : { type: Number, required: false, default: null },
+
+            /* FILE */
+            showError: { type: Boolean, required: false, default: true },
         },
 
         /*props: [
@@ -222,8 +227,8 @@
         top: 0;
         right: 10px;
         bottom: 0;
-        height: 20px;
-        width: 20px;
+        height: 15px;
+        width: 15px;
         margin-top: auto;
         margin-bottom: auto;
         cursor: pointer;
