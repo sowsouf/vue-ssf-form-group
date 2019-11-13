@@ -10,7 +10,7 @@
     <!--                    :placeholder="false" :autocomplete="true" label="Text input"/>-->
 
     <ssf-form-group type="text" name="text" v-model="test.text" :required="true" :disabled="false" :placeholder="false"
-                    :autocomplete="true" label="Text input"/>
+                    :autocomplete="true" label="Text input" icon="wb_sunny" icon-type="material"/>
 
     <ssf-form-group type="file" name="file" v-model="test.file" :required="true" :disabled="false" :placeholder="false"
                     :autocomplete="true" label="File input" @input="onFileInput"/>

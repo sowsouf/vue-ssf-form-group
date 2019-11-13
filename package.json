@@ -14,6 +14,7 @@
   "dependencies": {
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
+    "ssf-icon": "git+https://github.com/sowsouf/vue-ssf-icon.git",
     "sweetalert2": "^9.1.5",
     "vue": "^2.6.10",
     "vue-custom-scrollbar": "^1.1.0",

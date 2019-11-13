@@ -33,7 +33,7 @@
             col           : { type: String, required: false },
             row           : { type: Boolean, required: false },
             formGroupClass: { type: String, required: false, default: '' },
-            icon          : { type: String, required: false, default: null },
+            // icon          : { type: String, required: false, default: null },
 
             /* COMMONS */
             name      : { type: String, required: true },
@@ -64,6 +64,31 @@
 
             /* FILE */
             showError: { type: Boolean, required: false, default: true },
+
+
+            /* ICONS */
+            iconType: { type: String, required: false, default: 'fa' },
+            iconSize: { type: String, required: false, default: '' },
+            icon    : { type: String, required: false, default: null },
+
+            /* FONT AWESOME */
+            fw      : { type: Boolean, required: false, default: false },
+            animated: { type: Boolean, required: false, default: false },
+            rotate  : { type: String, required: false, default: '' },
+            pull    : { required: false, default: false },
+            // STRONG
+            regular : { type: Boolean, required: false, default: false },
+            solid   : { type: Boolean, required: false, default: false },
+            light   : { type: Boolean, required: false, default: false },
+            brand   : { type: Boolean, required: false, default: false },
+            normal  : { type: Boolean, required: false, default: false },
+
+            /* MATERIAL */
+            outlined: { type: Boolean, required: false, default: true },
+            rounded : { type: Boolean, required: false, default: false },
+            filled  : { type: Boolean, required: false, default: false },
+            twoTone : { type: Boolean, required: false, default: false },
+            sharp   : { type: Boolean, required: false, default: false },
         },
 
         /*props: [
