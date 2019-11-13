@@ -1,43 +1,43 @@
 {
-  "name"            : "ssf-form-group",
-  "version"         : "1.0.9",
-  "description"     : "A Vue.js component for html input",
-  "author"          : "Sofiane Akbly <sofiane.akbly@gmail.com>",
-  "private"         : true,
-  "main"            : "./dist/vue-ssf-form-group.common.js",
-  "scripts"         : {
-    "serve"       : "vue-cli-service serve",
-    "build"       : "vue-cli-service build",
-    "build-lib"   : "vue-cli-service build --target lib --name vue-ssf-form-group src/main.js",
-    "postversion" : "npm version patch && git push origin dev && git push --tags && upload-modules ssf-form-group SsfFormGroup"
+  "name": "ssf-form-group",
+  "version": "1.0.10",
+  "description": "A Vue.js component for html input",
+  "author": "Sofiane Akbly <sofiane.akbly@gmail.com>",
+  "private": true,
+  "main": "./dist/vue-ssf-form-group.common.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --target lib --name vue-ssf-form-group src/main.js",
+    "postversion": "npm version patch && git push origin dev && git push --tags && upload-modules ssf-form-group SsfFormGroup"
   },
-  "dependencies"    : {
-    "moment"               : "^2.24.0",
-    "moment-timezone"      : "^0.5.25",
-    "sweetalert2"          : "^9.1.5",
-    "vue"                  : "^2.6.10",
-    "vue-custom-scrollbar" : "^1.1.0",
-    "vue2-filters"         : "^0.4.1"
+  "dependencies": {
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
+    "sweetalert2": "^9.1.5",
+    "vue": "^2.6.10",
+    "vue-custom-scrollbar": "^1.1.0",
+    "vue2-filters": "^0.4.1"
   },
-  "devDependencies" : {
-    "@vue/cli-plugin-babel" : "^3.8.0",
-    "@vue/cli-service"      : "^3.8.0",
-    "node-sass"             : "^4.13.0",
-    "sass-loader"           : "^8.0.0",
-    "style-loader"          : "^1.0.0",
-    "vue-template-compiler" : "^2.6.10",
-    "lodash"                : "latest"
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "vue-template-compiler": "^2.6.10",
+    "lodash": "latest"
   },
-  "engines"         : {
-    "node" : ">= 8.0.0",
-    "npm"  : ">= 6.0.0"
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 6.0.0"
   },
-  "browserslist"    : [
+  "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
   ],
-  "files"           : [
+  "files": [
     "dist/*"
   ]
 }
