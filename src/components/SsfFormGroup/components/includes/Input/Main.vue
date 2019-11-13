@@ -3,7 +3,8 @@
     <label v-html="label" :class="{active}" v-if="isDefault() && label"></label>
 
     <!-- TYPE : text -->
-    <input :type="type" :id="name" :name="name" :value="value" class="ssf-form-control" :class="inputClass" :required="required"
+    <input :type="type" :id="name" :name="name" :value="value" class="ssf-form-control" :class="inputClass"
+           :required="required"
            :disabled="disabled" :placeholder="`${placeholder ? label : ''}`" @change="$emit('change')"
            :autocomplete="`${autocomplete ? autocomplete === true ? name : autocomplete : 'off'}`"
            @input="updateValue()" @focusin="focused = true" @focusout="focused = false" ref="inputComponent"
@@ -12,7 +13,14 @@
     <!-- TYPE : password -->
     <ssf-input-password v-else-if="type === 'password'" :name="name" :value="value" :required="required" :label="label"
                         :disabled="disabled" :placeholder="placeholder" @change="$emit('change')"
-                        :autocomplete="autocomplete" @input="updateValue" ref="inputComponent" :input-class="inputClass"/>
+                        :autocomplete="autocomplete" @input="updateValue" ref="inputComponent"
+                        :input-class="inputClass"/>
+
+    <!-- TYPE : file -->
+    <ssf-input-file v-else-if="type === 'file'" :name="name" :value="value" :required="required" :label="label"
+                    :disabled="disabled" :placeholder="placeholder" @change="$emit('change')"
+                    :autocomplete="autocomplete" @input="updateValue" ref="inputComponent"
+                    :input-class="inputClass" :show-error="showError"/>
 
     <!-- TYPE : checkbox -->
     <ssf-input-checkbox v-else-if="type === 'checkbox'" :name="name" :required="required" :label="label"
@@ -32,11 +40,13 @@
     <!-- TYPE : number -->
     <ssf-input-number v-else-if="type === 'number'" :name="name" :value="value" :required="required" :label="label"
                       :disabled="disabled" :placeholder="placeholder" @change="$emit('change')" :step="step" :min="min"
-                      :max="max" :autocomplete="autocomplete" @input="updateValue" ref="inputComponent" :input-class="inputClass"/>
+                      :max="max" :autocomplete="autocomplete" @input="updateValue" ref="inputComponent"
+                      :input-class="inputClass"/>
 
     <!-- TYPE : switch -->
     <ssf-input-switch v-else-if="type === 'switch'" :name="name" :required="required" :label="label" :value="value"
-                      :disabled="disabled" @change="$emit('change')" @input="updateValue" ref="inputComponent" :input-class="inputClass"/>
+                      :disabled="disabled" @change="$emit('change')" @input="updateValue" ref="inputComponent"
+                      :input-class="inputClass"/>
 
     <!-- TYPE : radio -->
     <ssf-input-radio v-else-if="type === 'radio'" :name="name" :required="required" :label="label" :value="value"
@@ -49,6 +59,7 @@
 <script>
     import SsfInputCheckbox from "./Checkbox";
     import SsfInputDate     from "./Date/Date";
+    import SsfInputFile     from "./File";
     import SsfInputNumber   from "./Number";
     import SsfInputPassword from "./Password";
     import SsfInputRadio    from "./Radio";
@@ -58,6 +69,7 @@
     export default {
         name      : "SsfInput",
         components: {
+            SsfInputFile,
             SsfInputTime,
             SsfInputDate,
             SsfInputNumber,
@@ -68,10 +80,10 @@
         },
         props     : {
             /* COMMONS */
-            name    : { type: String, required: true },
-            label   : { type: String, required: false },
-            value   : { required: false, default: null },
-            required: { type: Boolean, required: false, default: false },
+            name      : { type: String, required: true },
+            label     : { type: String, required: false },
+            value     : { required: false, default: null },
+            required  : { type: Boolean, required: false, default: false },
             inputClass: { type: String, required: false, default: '' },
 
             /* INPUT */
@@ -89,6 +101,9 @@
             step: { type: Number, required: false, default: 1 },
             min : { type: Number, required: false, default: null },
             max : { type: Number, required: false, default: null },
+
+            /* FILE */
+            showError: { type: Boolean, required: false, default: true },
         },
 
         computed: {
@@ -106,13 +121,13 @@
         methods: {
 
             isDefault() {
-                let defaults = ['text', 'email']
-                return defaults.includes(this.type)
+                let defaults = ['password', 'checkbox', 'switch', 'date', 'time', 'number', 'radio', 'file']
+                return !defaults.includes(this.type)
             },
 
             updateValue(value = null) {
                 this.$nextTick(() => {
-                    this.$emit('input', value === null ? this.$refs.inputComponent.value : value)
+                    this.$emit('input', value === null && this.type !== 'file' ? this.$refs.inputComponent.value : value)
                 })
             }
         }

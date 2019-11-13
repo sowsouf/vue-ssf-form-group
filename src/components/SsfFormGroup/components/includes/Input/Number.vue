@@ -68,6 +68,7 @@
 
             updateValue(direction = null) {
                 let value = this.format(this.value)
+                value = Number.isNaN(value) ? 0 : value
                 if (direction === 1 && ((this.max && value + this.step <= this.max) || !this.max))
                     this.$emit('input', value + this.step)
                 else if (direction === -1 && ((this.min && value - this.step >= this.min) || !this.min))
