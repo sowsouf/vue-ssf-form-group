@@ -3,15 +3,30 @@
     <label>
       <input type="checkbox" :id="name" :name="name" :value="value" class="ssf-form-control" :class="{'checked': value}"
              :required="required" :disabled="disabled" @change="$emit('change')" @input="updateValue()"
-             ref="inputComponent" :checked="value">&nbsp;<span v-html="label"></span>
+             ref="inputComponent" :checked="value">&nbsp;
+      <span v-if="label">
+        <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
+                  :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
+                  :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
+                  :fw="$parent.fw" :animated="$parent.animated" :rotate="$parent.rotate" :pull="$parent.pull"
+                  v-if="$parent.icon" class="mr-1"/>
+        <span v-html="label"></span>
+      </span>
       <span class="slider" :class="{'checked': value}"></span>
     </label>
   </div>
 </template>
 
 <script>
+
+    import SsfIcon from 'ssf-icon'
+
     export default {
         name: "SsfInputSwitch",
+
+        components: {
+            SsfIcon
+        },
 
         props: {
             /* COMMONS */

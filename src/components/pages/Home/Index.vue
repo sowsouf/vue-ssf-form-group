@@ -20,7 +20,7 @@
     <!--                    :placeholder="false" :autocomplete="true" label="Password input"/>-->
 
     <ssf-form-group type="checkbox" name="checkbox" v-model="test.checkbox" :required="true" :disabled="false"
-                    :placeholder="false" :autocomplete="true" label="Checkbox input"/>
+                    :placeholder="false" :autocomplete="true" label="Checkbox input" icon="user"/>
 
     <ssf-form-group type="date" name="date" v-model="test.date" col="col-12" label="Date input"/>
 

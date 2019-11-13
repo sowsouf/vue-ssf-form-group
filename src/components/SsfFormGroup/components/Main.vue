@@ -9,7 +9,10 @@
       <ssf-input :type="type" :label="label" :name="name" :value="value" :required="required" :disabled="disabled"
                  :items="optionItems" :field="optionField" :placeholder="placeholder" :autocomplete="autocomplete"
                  :step="step" :min="min" :max="max" @input="updateValue" :inline="inline" ref="input"
-                 :input-class="inputClass" :show-error="showError" v-else/>
+                 :input-class="inputClass" :show-error="showError" :iconType="iconType" :iconSize="iconSize"
+                 :icon="icon" :fw="fw" :animated="animated" :rotate="rotate" :pull="pull" :regular="regular"
+                 :solid="solid" :light="light" :brand="brand" :normal="normal" :outlined="outlined" :rounded="rounded"
+                 :filled="filled" :twoTone="twoTone" :sharp="sharp" v-else/>
 
     </div>
   </div>
@@ -21,6 +24,8 @@
 
     import SsfInput  from "./includes/Input/Main";
     import SsfSelect from "./includes/Select";
+
+    import 'ssf-icon/dist/vue-ssf-icon.css'
 
     export default {
         name      : "SsfFormGroup",

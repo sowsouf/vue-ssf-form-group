@@ -1,6 +1,13 @@
 <template>
   <div class="ssf-input-container ssf-form-file">
-    <label v-html="label" :class="{active}" v-if="label"></label>
+    <label :class="{active}" v-if="label">
+      <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
+                :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
+                :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
+                :fw="$parent.fw" :animated="$parent.animated" :rotate="$parent.rotate" :pull="$parent.pull"
+                v-if="$parent.icon" class="mr-1"/>
+      <span v-html="label"></span>
+    </label>
 
     <!-- TYPE : file -->
     <input type="file" :id="name" :name="name" class="ssf-form-control" :class="inputClass" @change="onFileSelected"
@@ -22,6 +29,7 @@
 <script>
 
     import swal from 'sweetalert2'
+    import SsfIcon from 'ssf-icon'
 
     let config = {
         mimes: {
@@ -37,6 +45,11 @@
 
     export default {
         name : "SsfInputFile",
+
+        components: {
+            SsfIcon
+        },
+
         props: {
             /* COMMONS */
             name      : { type: String, required: true },

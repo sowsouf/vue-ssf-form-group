@@ -1,6 +1,13 @@
 <template>
   <div class="ssf-input-container">
-    <label v-html="label" :class="{active}" v-if="label"></label>
+    <label :class="{active}" v-if="label">
+      <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
+                :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
+                :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
+                :fw="$parent.fw" :animated="$parent.animated" :rotate="$parent.rotate" :pull="$parent.pull"
+                v-if="$parent.icon" class="mr-1"/>
+      <span v-html="label"></span>
+    </label>
     <div class="ssf-select-container" @click="toggleShowItems" @dblclick="onDoubleClick">
 
       <div class="ssf-form-control" :class="inputClass">
@@ -31,6 +38,9 @@
 </template>
 
 <script>
+
+    import SsfIcon from 'ssf-icon'
+
     export default {
         name: "SsfSelect",
 
@@ -46,6 +56,10 @@
             items      : { type: Array, required: true },
             field      : { type: String, required: false, default: null },
             optionLabel: { type: String, required: false, default: null },
+        },
+
+        components: {
+            SsfIcon
         },
 
         computed: {

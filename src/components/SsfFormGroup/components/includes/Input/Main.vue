@@ -1,11 +1,9 @@
 <template>
   <div class="ssf-input-container">
     <label :class="{active}" v-if="isDefault() && label">
-      <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
-                :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
-                :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
-                :fw="$parent.fw" :animated="$parent.animated" :rotate="$parent.rotate" :pull="$parent.pull"
-                v-if="$parent.icon"/>
+      <ssf-icon :type="iconType" :icon="icon" :solid="solid" :regular="regular" :brand="brand" :light="light"
+                :normal="normal" :outlined="outlined" :rounded="rounded" :filled="filled" :twoTone="twoTone"
+                :sharp=sharp :fw="fw" :animated="animated" :rotate="rotate" :pull="pull" v-if="icon" class="mr-1"/>
       <span v-html="label"></span>
     </label>
 
@@ -74,7 +72,6 @@
     import SsfInputTime     from "./Time/Time";
 
     import SsfIcon from 'ssf-icon'
-    import 'ssf-icon/dist/vue-ssf-icon.css'
 
     export default {
         name      : "SsfInput",
@@ -116,6 +113,30 @@
 
             /* FILE */
             showError: { type: Boolean, required: false, default: true },
+
+            /* ICONS */
+            iconType: { type: String, required: false, default: 'fa' },
+            iconSize: { type: String, required: false, default: '' },
+            icon    : { type: String, required: false, default: null },
+
+            /* FONT AWESOME */
+            fw      : { type: Boolean, required: false, default: false },
+            animated: { type: Boolean, required: false, default: false },
+            rotate  : { type: String, required: false, default: '' },
+            pull    : { required: false, default: false },
+            // STRONG
+            regular : { type: Boolean, required: false, default: false },
+            solid   : { type: Boolean, required: false, default: false },
+            light   : { type: Boolean, required: false, default: false },
+            brand   : { type: Boolean, required: false, default: false },
+            normal  : { type: Boolean, required: false, default: false },
+
+            /* MATERIAL */
+            outlined: { type: Boolean, required: false, default: true },
+            rounded : { type: Boolean, required: false, default: false },
+            filled  : { type: Boolean, required: false, default: false },
+            twoTone : { type: Boolean, required: false, default: false },
+            sharp   : { type: Boolean, required: false, default: false },
         },
 
         computed: {
