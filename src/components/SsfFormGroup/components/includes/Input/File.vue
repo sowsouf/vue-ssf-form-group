@@ -28,7 +28,7 @@
 
 <script>
 
-    import swal from 'sweetalert2'
+    import swal    from 'sweetalert2'
     import SsfIcon from 'ssf-icon'
 
     let config = {
@@ -38,13 +38,14 @@
             text: 'text/plain',
             gif : 'image/gif',
             jpg : 'image/jpeg',
-            png : 'image./png',
+            jpeg: 'image/jpeg',
+            png : 'image/png',
             icon: 'image/x-icon'
         }
     }
 
     export default {
-        name : "SsfInputFile",
+        name: "SsfInputFile",
 
         components: {
             SsfIcon
@@ -67,7 +68,7 @@
             mimes: {
                 type    : String,
                 required: false,
-                default : 'pdf, csv, text, gif, jpzg, png, icon'
+                default : 'pdf, csv, text, gif, jpeg, png, icon'
             }
         },
 
