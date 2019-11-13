@@ -7,7 +7,7 @@
 
         <div class="ssf-select-input-container" :class="{open: show.items}" :style="{height: ssfContainerHeight}">
           <div class="ssf-text-container" :class="{open: show.items}" ref="ssfTextContainer">
-            <span v-if="value" :value="value">{{ value }}</span>
+            <span v-if="value" :value="value">{{ optionLabel ? items.find(item => item[field] === value)[optionLabel] : value }}</span>
             <span v-else-if="show.items || !label" class="ssf-select-option-title">Choisir une valeur... {{ required ? '(*)' : '' }}</span>
           </div>
           <div class="ssf-value-container">
