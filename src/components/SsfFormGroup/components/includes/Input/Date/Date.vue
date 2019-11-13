@@ -65,7 +65,6 @@
         methods: {
 
             removeEvent(event) {
-                console.log("yiiiiih")
                 event.preventDefault()
             },
 

@@ -40,7 +40,6 @@
 
             updateValue() {
                 this.$nextTick(() => {
-                    console.log(this.$refs.inputComponent, this.value)
                     this.$emit('input', !this.value)
                 })
             }
