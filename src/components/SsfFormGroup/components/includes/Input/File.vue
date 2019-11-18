@@ -14,13 +14,16 @@
            :required="required" ref="inputComponent"/>
 
     <div class="ssf-form-control ssf-file-selector" @click="onSelectorClick">
-      <div class="file-info" v-if="file">
+      <slot name="file-info" v-if="hasSlot('file-info')"></slot>
+      <div class="file-info" v-else-if="file">
         {{ file.name }}&nbsp;<span class="file-size">({{ humanizeSize(file.size) }})</span>
       </div>
-      <div class="selector">
+      <slot name="selector" v-if="hasSlot('selector')"></slot>
+      <div class="selector" v-else>
         <span>Choisir un fichier...</span>
       </div>
-      <div class="delete-file" @click.stop="updateValue(true)"></div>
+      <slot name="delete-file" v-if="hasSlot('delete-file')" @click.stop="updateValue(true)"></slot>
+      <div class="delete-file" @click.stop="updateValue(true)" v-else></div>
     </div>
 
   </div>
@@ -149,6 +152,10 @@
             showErrorMessage(type) {
                 let text = type === 'mime' ? "Le format de fichier n'est pas autorisé" : "Une erreur est survenue"
                 return (swal.fire({ text, icon: 'error', showConfirmButton: false }) || true) && false
+            },
+
+            hasSlot(name = 'default') {
+                return !!this.$slots[name] || !!this.$scopedSlots[name];
             }
         }
     }
