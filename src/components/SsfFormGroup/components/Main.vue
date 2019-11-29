@@ -228,7 +228,8 @@
       /*font-weight: 300;*/
       margin-left: 0;
       transition: all .25s;
-      z-index: -1;
+      cursor: pointer;
+      z-index: 1;
     }
 
     .ssf-form-control:focus + label,

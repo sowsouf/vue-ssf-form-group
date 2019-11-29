@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container">
-    <label :class="{active}" v-if="label">
+    <label :class="{active}" v-if="label" @click="onLabelClick">
       <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
                 :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
                 :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
@@ -83,6 +83,10 @@
         },
 
         methods: {
+
+            onLabelClick() {
+                this.toggleShowItems()
+            },
 
             getSsfContainerHeight() {
                 let element = this.$refs.ssfValueList

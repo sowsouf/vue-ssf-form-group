@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container">
-    <label :class="{active}" v-if="isDefault() && label">
+    <label :class="{active}" v-if="isDefault() && label" class="ssf-form-label" @click="onLabelClick">
       <ssf-icon :type="iconType" :icon="icon" :solid="solid" :regular="regular" :brand="brand" :light="light"
                 :normal="normal" :outlined="outlined" :rounded="rounded" :filled="filled" :twoTone="twoTone"
                 :sharp=sharp :fw="fw" :animated="animated" :rotate="rotate" :pull="pull" v-if="icon" class="mr-1"/>
@@ -9,8 +9,8 @@
 
     <!-- TYPE : text -->
     <input :type="type" :id="name" :name="name" :value="value" class="ssf-form-control" :class="inputClass"
-           :required="required"
-           :disabled="disabled" :placeholder="`${placeholder ? label : ''}`" @change="$emit('change')"
+           :required="required" :disabled="disabled" :placeholder="`${placeholder ? label : ''}`"
+           @change="$emit('change')"
            :autocomplete="`${autocomplete ? autocomplete === true ? name : autocomplete : 'off'}`"
            @input="updateValue()" @focusin="focused = true" @focusout="focused = false" ref="inputComponent"
            v-if="isDefault()">
@@ -152,6 +152,13 @@
         },
 
         methods: {
+
+            onLabelClick() {
+                this.$nextTick(() => {
+                    this.focused = true
+                    this.$refs.inputComponent.focus()
+                })
+            },
 
             isDefault() {
                 let defaults = ['password', 'checkbox', 'switch', 'date', 'time', 'number', 'radio', 'file']
