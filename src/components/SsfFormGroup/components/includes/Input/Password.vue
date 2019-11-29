@@ -17,8 +17,8 @@
            ref="inputComponent">
 
     <span class="ssf-password-toggle" @click="toggleShow">
-      <img src="@/assets/img/eye.png" alt="Eye" v-if="!show">
-      <img src="@/assets/img/eye-slash.png" alt="Eye slash" v-if="show">
+      <ssf-icon icon="eye" :solid="true" v-if="!show"/>
+      <ssf-icon icon="eye-slash" :solid="true" v-if="show"/>
     </span>
 
   </div>
@@ -26,8 +26,13 @@
 
 <script>
 
+    import SsfIcon from 'ssf-icon'
+
     export default {
-        name : "SsfInputPassword",
+        name: "SsfInputPassword",
+
+        components: { SsfIcon },
+
         props: {
             /* COMMONS */
             name      : { type: String, required: true },
