@@ -13,7 +13,9 @@
                     :autocomplete="true" label="Text input" icon="wb_sunny" icon-type="material"/>
 
     <ssf-form-group type="file" name="file" v-model="test.file" :required="true" :disabled="false" :placeholder="false"
-                    :autocomplete="true" label="File input" @input="onFileInput"/>
+                    :autocomplete="true" label="File input" @input="onFileInput">
+      <template v-slot:selector>Selectoooooooor</template>
+    </ssf-form-group>
 
     <ssf-form-group type="password" name="password" v-model="test.password" :required="true" :disabled="false"
                     :placeholder="false"/>
