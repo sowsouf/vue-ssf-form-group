@@ -229,7 +229,6 @@
       margin-left: 0;
       transition: all .25s;
       cursor: pointer;
-      z-index: 1;
     }
 
     .ssf-form-control:focus + label,
