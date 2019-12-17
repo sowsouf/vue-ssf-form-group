@@ -36,154 +36,156 @@
 
 <script>
 
-    import moment   from "moment";
-    import {Matrix} from '../../../../../../app/utils'
+  import moment  from "moment";
+  import Helpers from '../../../../../../app/helpers'
 
-    import VueCustomScrollbar from 'vue-custom-scrollbar'
+  import VueCustomScrollbar from 'vue-custom-scrollbar'
 
-    export default {
-        name: "SsfClock",
+  export default {
+    name: "SsfClock",
 
-        components: {
-            VueCustomScrollbar
-        },
+    components: {
+      VueCustomScrollbar
+    },
 
-        props: {
-            value: { required: false, default: null }
-        },
+    props: {
+      value: { required: false, default: null }
+    },
 
-        data() {
-            return {
+    data() {
+      return {
 
-                current : { time: null, hours: null, minutes: null, seconds: null },
-                selected: { hours: null, minutes: null, seconds: null },
-                show    : { selector: true },
+        current : { time: null, hours: null, minutes: null, seconds: null },
+        selected: { hours: null, minutes: null, seconds: null },
+        show    : { selector: true },
 
-                clock: null,
+        clock: null,
 
-                daysLabels: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
-                months    : []
-            }
-        },
+        helpers: Helpers,
 
-        created() {
-            this.months = moment.months()
-            return this.run()
-        },
+        daysLabels: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
+        months    : []
+      }
+    },
 
-        filters: {
-            capitalize: function (value) {
-                if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
-            }
-        },
+    created() {
+      this.months = moment.months()
+      return this.run()
+    },
 
-        computed: {
-            time() {
-                let result
-                if (this.value) {
-                    let tmp = this.value.split(':')
-                    result = { hours: tmp[0] || 14, minutes: tmp[1] || 0, seconds: tmp[2] || 0 }
-                } else result = { hours: 14, minutes: 0, seconds: 0 }
-                return result
-            },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    },
 
-            formatted() {
-                return `${this.helpers.twoDigits(this.current.time.hours)}:${this.helpers.twoDigits(this.current.time.minutes)}`
-            }
-        },
+    computed: {
+      time() {
+        let result
+        if (this.value) {
+          let tmp = this.value.split(':')
+          result = { hours: tmp[0] || 14, minutes: tmp[1] || 0, seconds: tmp[2] || 0 }
+        } else result = { hours: 14, minutes: 0, seconds: 0 }
+        return result
+      },
 
-        methods: {
+      formatted() {
+        return `${this.helpers.twoDigits(this.current.time.hours)}:${this.helpers.twoDigits(this.current.time.minutes)}`
+      }
+    },
 
-            increase(type, value = 1) {
-                let max = type === 'hours' ? 25 : 61
-                this.selected[type] = (parseInt(this.selected[type]) + value) % max
-                if (this.selected[type] < 0)
-                    this.selected[type] = max + this.selected[type]
-                this.current.time[type] = this.selected[type]
-                this.run()
-                this.$emit('selected', this.formatted)
-            },
+    methods: {
 
-            decrease(type, value = -1) {
-                this.increase(type, value)
-            },
+      increase(type, value = 1) {
+        let max = type === 'hours' ? 25 : 61
+        this.selected[type] = (parseInt(this.selected[type]) + value) % max
+        if (this.selected[type] < 0)
+          this.selected[type] = max + this.selected[type]
+        this.current.time[type] = this.selected[type]
+        this.run()
+        this.$emit('selected', this.formatted)
+      },
 
-            select() {
-                if (this.selected.year && this.selected.month)
-                    this.current.day = this.helpers.moment(`${this.selected.year}-${this.helpers.twoDigits(this.selected.month)}-01`)
-                else if (this.selected.year)
-                    this.current.day = this.helpers.moment(`${this.selected.year}-01-01`)
-                this.run()
-                this.show.selector = false
-            },
+      decrease(type, value = -1) {
+        this.increase(type, value)
+      },
 
-            cancel() {
-                this.selected = { month: null, year: null }
-                this.show.selector = false
-            },
+      select() {
+        if (this.selected.year && this.selected.month)
+          this.current.day = this.helpers.moment(`${this.selected.year}-${this.helpers.twoDigits(this.selected.month)}-01`)
+        else if (this.selected.year)
+          this.current.day = this.helpers.moment(`${this.selected.year}-01-01`)
+        this.run()
+        this.show.selector = false
+      },
 
-            selectCurrentYear() {
-                let currentYear = document.getElementById('currentYear'),
-                    scrollYear = document.getElementById('scrollYear')
-                scrollYear.scrollTop = currentYear.offsetTop - (scrollYear.offsetHeight / 2)
-            },
+      cancel() {
+        this.selected = { month: null, year: null }
+        this.show.selector = false
+      },
 
-            openSelector() {
-                this.selected = { month: this.current.day.month() + 1, year: this.current.day.year() }
-                this.show.selector = true
-                this.$nextTick(() => {
-                    this.selectCurrentYear()
-                })
-            },
+      selectCurrentYear() {
+        let currentYear = document.getElementById('currentYear'),
+          scrollYear = document.getElementById('scrollYear')
+        scrollYear.scrollTop = currentYear.offsetTop - (scrollYear.offsetHeight / 2)
+      },
 
-            setDate(o) {
-                this.current.day.add(o, 'month')
-                this.run()
-            },
+      openSelector() {
+        this.selected = { month: this.current.day.month() + 1, year: this.current.day.year() }
+        this.show.selector = true
+        this.$nextTick(() => {
+          this.selectCurrentYear()
+        })
+      },
 
-            getClass(dom) {
-                let c = this.value === null ? '' : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD').format('L') === this.helpers.moment(this.value, 'YYYY-MM-DD').format('L') ? ' active ' : ''
-                return dom === 0 ? '' :
-                    dom > 0 ? c + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD'))
-                        : (c + 'cell-previous-month ' + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD'))).trim();
-            },
+      setDate(o) {
+        this.current.day.add(o, 'month')
+        this.run()
+      },
 
-            getTodayClass(date) {
-                return date.format('l') === this.helpers.moment().format('l') ? 'today' : '';
-            },
+      getClass(dom) {
+        let c = this.value === null ? '' : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD').format('L') === this.helpers.moment(this.value, 'YYYY-MM-DD').format('L') ? ' active ' : ''
+        return dom === 0 ? '' :
+          dom > 0 ? c + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD'))
+            : (c + 'cell-previous-month ' + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD'))).trim();
+      },
 
-            fillCalendar() {
-                this.selected = {
-                    hours  : this.current.hours,
-                    minutes: this.current.minutes,
-                    seconds: this.current.seconds
-                }
-            },
+      getTodayClass(date) {
+        return date.format('l') === this.helpers.moment().format('l') ? 'today' : '';
+      },
 
-            run() {
-                this.current.time = this.current.time || this.time
-                this.current.hours = this.current.time.hours
-                this.current.minutes = this.current.time.minutes
-                this.current.seconds = this.current.time.seconds
-                this.fillCalendar()
-            },
-
-            windowSmall() {
-                return (window.innerWidth < 425)
-            },
-
-            onSelectDate(dom) {
-                if (date === 0)
-                    return false
-                let date = dom > 0 ? this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD')
-                    : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD')
-                this.$emit('selected', date)
-            }
-
+      fillCalendar() {
+        this.selected = {
+          hours  : this.current.hours,
+          minutes: this.current.minutes,
+          seconds: this.current.seconds
         }
+      },
+
+      run() {
+        this.current.time = this.current.time || this.time
+        this.current.hours = this.current.time.hours
+        this.current.minutes = this.current.time.minutes
+        this.current.seconds = this.current.time.seconds
+        this.fillCalendar()
+      },
+
+      windowSmall() {
+        return (window.innerWidth < 425)
+      },
+
+      onSelectDate(dom) {
+        if (date === 0)
+          return false
+        let date = dom > 0 ? this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD')
+          : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD')
+        this.$emit('selected', date)
+      }
+
     }
+  }
 </script>
 
 <style lang="scss">

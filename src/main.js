@@ -3,11 +3,11 @@
 import Vue from 'vue'
 
 import App     from './App'
-import helpers from './app/helpers'
+// import helpers from './app/helpers'
 
 Vue.config.productionTip = false
 
-Vue.prototype.helpers = helpers
+// Vue.prototype.helpers = helpers
 
 
 new Vue({

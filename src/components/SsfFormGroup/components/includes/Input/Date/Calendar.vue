@@ -101,142 +101,146 @@
 
 <script>
 
-    import moment   from "moment";
-    import {Matrix} from '../../../../../../app/utils'
+  import moment   from "moment";
+  import {Matrix} from '../../../../../../app/utils'
 
-    import VueCustomScrollbar from 'vue-custom-scrollbar'
+  import Helpers from '../../../../../../app/helpers'
 
-    export default {
-        name: "SsfCalendar",
+  import VueCustomScrollbar from 'vue-custom-scrollbar'
 
-        components: {
-            VueCustomScrollbar
-        },
+  export default {
+    name: "SsfCalendar",
 
-        props: {
-            value: { required: false, default: null }
-        },
+    components: {
+      VueCustomScrollbar
+    },
 
-        data() {
-            return {
+    props: {
+      value: { required: false, default: null }
+    },
 
-                current : { day: null, month: null, year: null },
-                selected: { month: null, year: null },
-                show    : { selector: false },
+    data() {
+      return {
 
-                calendar: null,
+        current : { day: null, month: null, year: null },
+        selected: { month: null, year: null },
+        show    : { selector: false },
 
-                daysLabels: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
-                months    : []
-            }
-        },
+        calendar: null,
 
-        created() {
-            this.months = moment.months()
-            return this.run()
-        },
+        helpers: Helpers,
 
-        filters: {
-            capitalize: function (value) {
-                if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
-            }
-        },
+        daysLabels: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
+        months    : []
+      }
+    },
 
-        computed: {
-            complete() {
-                return (6 - this.calendar.length)
-            },
+    created() {
+      this.months = moment.months()
+      return this.run()
+    },
 
-            clientHeight() {
-                let calendarContainer = document.getElementById('calendarContainer')
-                return calendarContainer ? calendarContainer.clientHeight : null
-            }
-        },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    },
 
-        methods: {
+    computed: {
+      complete() {
+        return (6 - this.calendar.length)
+      },
 
-            select() {
-                if (this.selected.year && this.selected.month)
-                    this.current.day = this.helpers.moment(`${this.selected.year}-${this.helpers.twoDigits(this.selected.month)}-01`)
-                else if (this.selected.year)
-                    this.current.day = this.helpers.moment(`${this.selected.year}-01-01`)
-                this.run()
-                this.show.selector = false
-            },
+      clientHeight() {
+        let calendarContainer = document.getElementById('calendarContainer')
+        return calendarContainer ? calendarContainer.clientHeight : null
+      }
+    },
 
-            cancel() {
-                this.selected = { month: null, year: null }
-                this.show.selector = false
-            },
+    methods: {
 
-            selectCurrentYear() {
-                let currentYear = document.getElementById('currentYear'),
-                    scrollYear = document.getElementById('scrollYear')
-                scrollYear.scrollTop = currentYear.offsetTop - (scrollYear.offsetHeight / 2)
-            },
+      select() {
+        if (this.selected.year && this.selected.month)
+          this.current.day = this.helpers.moment(`${this.selected.year}-${this.helpers.twoDigits(this.selected.month)}-01`)
+        else if (this.selected.year)
+          this.current.day = this.helpers.moment(`${this.selected.year}-01-01`)
+        this.run()
+        this.show.selector = false
+      },
 
-            openSelector() {
-                this.selected = { month: this.current.day.month() + 1, year: this.current.day.year() }
-                this.show.selector = true
-                this.$nextTick(() => {
-                    this.selectCurrentYear()
-                })
-            },
+      cancel() {
+        this.selected = { month: null, year: null }
+        this.show.selector = false
+      },
 
-            setDate(o) {
-                this.current.day.add(o, 'month')
-                this.run()
-            },
+      selectCurrentYear() {
+        let currentYear = document.getElementById('currentYear'),
+          scrollYear = document.getElementById('scrollYear')
+        scrollYear.scrollTop = currentYear.offsetTop - (scrollYear.offsetHeight / 2)
+      },
 
-            getClass(dom) {
-                let c = this.value === null ? '' : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD').format('L') === this.helpers.moment(this.value, 'YYYY-MM-DD').format('L') ? ' active ' : ''
-                return dom === 0 ? '' :
-                    dom > 0 ? c + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD'))
-                        : (c + 'cell-previous-month ' + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD'))).trim();
-            },
+      openSelector() {
+        this.selected = { month: this.current.day.month() + 1, year: this.current.day.year() }
+        this.show.selector = true
+        this.$nextTick(() => {
+          this.selectCurrentYear()
+        })
+      },
 
-            getTodayClass(date) {
-                return date.format('l') === this.helpers.moment().format('l') ? 'today' : '';
-            },
+      setDate(o) {
+        this.current.day.add(o, 'month')
+        this.run()
+      },
 
-            fillCalendar() {
-                let matrix = Matrix(this.current.year, this.current.month)
-                for (let i = 0; i < matrix.length; i++) {
-                    let tmp = matrix[i][0]
-                    matrix[i].splice(0, 1)
-                    if (i > 0)
-                        matrix[i - 1].push(tmp)
-                    else if (tmp > 0 && i === 0) {
-                        matrix.unshift([0, 0, 0, 0, 0, 0, tmp])
-                        i++
-                    }
-                }
-                this.calendar = matrix
-            },
+      getClass(dom) {
+        let c = this.value === null ? '' : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD').format('L') === this.helpers.moment(this.value, 'YYYY-MM-DD').format('L') ? ' active ' : ''
+        return dom === 0 ? '' :
+          dom > 0 ? c + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD'))
+            : (c + 'cell-previous-month ' + this.getTodayClass(this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD'))).trim();
+      },
 
-            run() {
-                this.current.day = this.current.day || this.helpers.moment()
-                this.current.month = this.current.day.month()
-                this.current.year = this.current.day.year()
-                this.fillCalendar()
-            },
+      getTodayClass(date) {
+        return date.format('l') === this.helpers.moment().format('l') ? 'today' : '';
+      },
 
-            windowSmall() {
-                return (window.innerWidth < 425)
-            },
-
-            onSelectDate(dom) {
-                if (date === 0)
-                    return false
-                let date = dom > 0 ? this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD')
-                    : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD')
-                this.$emit('selected', date)
-            }
-
+      fillCalendar() {
+        let matrix = Matrix(this.current.year, this.current.month)
+        for (let i = 0; i < matrix.length; i++) {
+          let tmp = matrix[i][0]
+          matrix[i].splice(0, 1)
+          if (i > 0)
+            matrix[i - 1].push(tmp)
+          else if (tmp > 0 && i === 0) {
+            matrix.unshift([0, 0, 0, 0, 0, 0, tmp])
+            i++
+          }
         }
+        this.calendar = matrix
+      },
+
+      run() {
+        this.current.day = this.current.day || this.helpers.moment()
+        this.current.month = this.current.day.month()
+        this.current.year = this.current.day.year()
+        this.fillCalendar()
+      },
+
+      windowSmall() {
+        return (window.innerWidth < 425)
+      },
+
+      onSelectDate(dom) {
+        if (date === 0)
+          return false
+        let date = dom > 0 ? this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month + 1)}-${this.helpers.twoDigits(dom)}`, 'YYYY-MM-DD')
+          : this.helpers.moment(`${this.current.year}-${this.helpers.twoDigits(this.current.month)}-${this.helpers.twoDigits(Math.abs(dom))}`, 'YYYY-MM-DD')
+        this.$emit('selected', date)
+      }
+
     }
+  }
 </script>
 
 <style lang="scss">

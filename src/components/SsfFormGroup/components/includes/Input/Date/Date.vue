@@ -1,31 +1,34 @@
 <template>
-  <div class="ssf-input-container">
-    <label :class="{active}" v-if="label && !placeholder" @click="onLabelClick">
-      <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
-                :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
-                :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
-                :fw="$parent.fw" :animated="$parent.animated" :rotate="$parent.rotate" :pull="$parent.pull"
-                v-if="$parent.icon" class="mr-1"/>
-      <span v-html="label"></span>
-    </label>
-    <div class="ssf-date-container" @click="toggleShowItems" @dblclick="onDoubleClick">
-      <div class="ssf-form-control" :class="inputClass">
-        <div class="ssf-text-container" ref="ssfTextContainer">
-          <span v-if="value" :value="value">{{ value }}</span>
+    <div class="ssf-input-container">
+        <label :class="{active}" v-if="label && !placeholder" @click="onLabelClick">
+            <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
+                      :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal"
+                      :outlined="$parent.outlined"
+                      :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone"
+                      :sharp=$parent.sharp
+                      :fw="$parent.fw" :animated="$parent.animated" :rotate="$parent.rotate" :pull="$parent.pull"
+                      v-if="$parent.icon" class="mr-1"/>
+            <span v-html="label"></span>
+        </label>
+        <div class="ssf-date-container" @click="toggleShowItems" @dblclick="onDoubleClick">
+            <div class="ssf-form-control" :class="inputClass">
+                <div class="ssf-text-container" ref="ssfTextContainer">
+                    <span v-if="value" :value="value">{{ value }}</span>
+                </div>
+                <div class="ssf-date-input-container" :class="{open: show.items}" :style="{height: ssfContainerHeight}">
+                    <ssf-calendar ref="calendarContainer"
+                                  :value="value ? helpers.moment(value, format).format('YYYY-MM-DD') : null"
+                                  v-show="show.items" @selected="onSelected" @click.stop="removeEvent"/>
+                </div>
+            </div>
         </div>
-        <div class="ssf-date-input-container" :class="{open: show.items}" :style="{height: ssfContainerHeight}">
-          <ssf-calendar ref="calendarContainer"
-                        :value="value ? helpers.moment(value, format).format('YYYY-MM-DD') : null"
-                        v-show="show.items" @selected="onSelected" @click.stop="removeEvent"/>
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
 
     import SsfCalendar from "./Calendar";
+    import Helpers     from '../../../../../../app/helpers'
 
     export default {
         name: "SsfInputDate",
@@ -50,7 +53,8 @@
             return {
                 show              : { items: false },
                 ssfContainerHeight: 0,
-                focused           : false
+                focused           : false,
+                helpers           : Helpers
             }
         },
 
@@ -120,75 +124,75 @@
 
 <style lang="scss">
 
-  .ssf-date-container {
-    position: relative;
-    cursor: pointer;
-  }
+    .ssf-date-container {
+        position: relative;
+        cursor: pointer;
+    }
 
-  .ssf-date-input-container.open {
-    position: absolute;
-    top: 44px;
-    left: 0;
-    /*right: 0;*/
-    bottom: 0;
-    /*-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
-    /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
-    background: #FFF;
-    z-index: 1051;
-  }
+    .ssf-date-input-container.open {
+        position: absolute;
+        top: 44px;
+        left: 0;
+        /*right: 0;*/
+        bottom: 0;
+        /*-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
+        /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
+        background: #FFF;
+        z-index: 1051;
+    }
 
-  .ssf-date-input-container.open:before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    background: transparent;
-    cursor: default;
-  }
+    .ssf-date-input-container.open:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background: transparent;
+        cursor: default;
+    }
 
-  .ssf-value-container {
-    /*background-color: #fff;*/
-  }
+    .ssf-value-container {
+        /*background-color: #fff;*/
+    }
 
-  .ssf-value-container > ul {
-    padding: 0;
-    margin: 0;
-  }
+    .ssf-value-container > ul {
+        padding: 0;
+        margin: 0;
+    }
 
-  .ssf-value-container li {
-    list-style-type: none;
-    padding: 10px;
-  }
+    .ssf-value-container li {
+        list-style-type: none;
+        padding: 10px;
+    }
 
-  /*.ssf-text-container {
-    cursor: pointer;
-  }*/
+    /*.ssf-text-container {
+      cursor: pointer;
+    }*/
 
-  .ssf-text-container.open {
-    height: 50px;
-    line-height: 50px;
-    padding-left: 10px;
-    width: 100%;
-  }
+    .ssf-text-container.open {
+        height: 50px;
+        line-height: 50px;
+        padding-left: 10px;
+        width: 100%;
+    }
 
-  .ssf-value-item:hover {
-    background: #000;
-    color: #FFF;
-  }
+    .ssf-value-item:hover {
+        background: #000;
+        color: #FFF;
+    }
 
-  .ssf-value-item.selected {
-    background: #ddd;
-    /*color: #FFF;*/
-  }
+    .ssf-value-item.selected {
+        background: #ddd;
+        /*color: #FFF;*/
+    }
 
-  .ssf-date-option-title {
-    color: #ddd;
-  }
+    .ssf-date-option-title {
+        color: #ddd;
+    }
 
 </style>
 
