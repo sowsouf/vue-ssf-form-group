@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container">
-    <label :class="{active}" v-if="isDefault() && label" class="ssf-form-label" @click="onLabelClick">
+    <label :class="{active}" v-if="isDefault() && label && !placeholder" class="ssf-form-label" @click="onLabelClick">
       <ssf-icon :type="iconType" :icon="icon" :solid="solid" :regular="regular" :brand="brand" :light="light"
                 :normal="normal" :outlined="outlined" :rounded="rounded" :filled="filled" :twoTone="twoTone"
                 :sharp=sharp :fw="fw" :animated="animated" :rotate="rotate" :pull="pull" v-if="icon" class="mr-1"/>

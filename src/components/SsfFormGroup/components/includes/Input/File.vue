@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container ssf-form-file">
-    <label :class="{active}" v-if="label" @click="onLabelClick">
+    <label :class="{active}" v-if="label && !placeholder" @click="onLabelClick">
       <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
                 :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
                 :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
@@ -31,141 +31,141 @@
 
 <script>
 
-    import swal    from 'sweetalert2'
-    import SsfIcon from 'ssf-icon'
+  import swal    from 'sweetalert2'
+  import SsfIcon from 'ssf-icon'
 
-    let config = {
-        mimes: {
-            pdf : 'application/pdf',
-            csv : 'text/csv',
-            text: 'text/plain',
-            gif : 'image/gif',
-            jpg : 'image/jpeg',
-            jpeg: 'image/jpeg',
-            png : 'image/png',
-            icon: 'image/x-icon'
-        }
+  let config = {
+    mimes: {
+      pdf : 'application/pdf',
+      csv : 'text/csv',
+      text: 'text/plain',
+      gif : 'image/gif',
+      jpg : 'image/jpeg',
+      jpeg: 'image/jpeg',
+      png : 'image/png',
+      icon: 'image/x-icon'
     }
+  }
 
-    export default {
-        name: "SsfInputFile",
+  export default {
+    name: "SsfInputFile",
 
-        components: {
-            SsfIcon
-        },
+    components: {
+      SsfIcon
+    },
 
-        props: {
-            /* COMMONS */
-            name      : { type: String, required: true },
-            label     : { type: String, required: false },
-            value     : { required: false, default: null },
-            required  : { type: Boolean, required: false, default: false },
-            inputClass: { type: String, required: false, default: '' },
-            showError : { type: Boolean, required: false, default: true },
+    props: {
+      /* COMMONS */
+      name      : { type: String, required: true },
+      label     : { type: String, required: false },
+      value     : { required: false, default: null },
+      required  : { type: Boolean, required: false, default: false },
+      inputClass: { type: String, required: false, default: '' },
+      showError : { type: Boolean, required: false, default: true },
 
-            /* INPUT */
-            type       : { type: String, required: false, default: 'text' },
-            disabled   : { type: Boolean, required: false, default: false },
-            placeholder: { type: Boolean, required: false, default: false },
+      /* INPUT */
+      type       : { type: String, required: false, default: 'text' },
+      disabled   : { type: Boolean, required: false, default: false },
+      placeholder: { type: Boolean, required: false, default: false },
 
-            mimes: {
-                type    : String,
-                required: false,
-                default : 'pdf, csv, text, gif, jpeg, png, icon'
-            }
-        },
+      mimes: {
+        type    : String,
+        required: false,
+        default : 'pdf, csv, text, gif, jpeg, png, icon'
+      }
+    },
 
-        computed: {
-            active() {
-                return this.focused || this.file
-            },
-        },
+    computed: {
+      active() {
+        return this.focused || this.file
+      },
+    },
 
-        data() {
-            return {
-                focused: false,
-                file   : null,
-                options: {
-                    mimes: null
-                }
-            }
-        },
-
-        created() {
-            this.initMimes()
-        },
-
-        watch: {
-            mimes() {
-                this.initMimes()
-            }
-        },
-
-        methods: {
-
-            onLabelClick() {
-                this.$nextTick(() => {
-                    this.focused = true
-                    this.$refs.inputComponent.focus()
-                })
-            },
-
-            initMimes() {
-                let mimes = this.mimes.split(', ')
-                this.options.mimes = {}
-                mimes.forEach((mime) => this.options.mimes[mime] = config.mimes[mime] || null)
-            },
-
-            onSelectorClick() {
-                this.$nextTick(() => {
-                    return this.$refs.inputComponent.click()
-                })
-            },
-
-            onFileSelected($event) {
-                let event = $event || window.event, target = event.target || event.dataTransfer,
-                    file = target.files[0] || null
-                return this.checkFile(file) ? (this.file = file) && this.updateValue() : this.$emit('error')
-            },
-
-            humanizeSize(size) {
-                if (size / 1000 < 1000)
-                    return Number((size / 1000).toFixed(1)) + ' Ko'
-                if (size / 1000 / 1000 < 1000)
-                    return Number((size / 1000 / 1000).toFixed(1)) + ' Mo'
-                return Number((size / 1000 / 1000 / 1000).toFixed(1)) + ' Go'
-            },
-
-            updateValue(del = false) {
-                if (del) {
-                    this.file = null
-                    this.$forceUpdate()
-                }
-                this.$emit('input', this.file)
-            },
-
-            checkMimeType(mime) {
-                return mime && this.options.mimes
-                    ? Object.keys(this.options.mimes).find(key => Array.isArray(this.options.mimes[key]) ? this.options.mimes[key].includes(mime) : this.options.mimes[key] === mime)
-                        ? true
-                        : this.showError ? this.showErrorMessage('mime') : false
-                    : false
-            },
-
-            checkFile(file) {
-                return file === null ? false : this.checkMimeType(file.type)
-            },
-
-            showErrorMessage(type) {
-                let text = type === 'mime' ? "Le format de fichier n'est pas autorisé" : "Une erreur est survenue"
-                return (swal.fire({ text, icon: 'error', showConfirmButton: false }) || true) && false
-            },
-
-            hasSlot(name = 'default') {
-                return !!this.$slots[name] || !!this.$scopedSlots[name];
-            }
+    data() {
+      return {
+        focused: false,
+        file   : null,
+        options: {
+          mimes: null
         }
+      }
+    },
+
+    created() {
+      this.initMimes()
+    },
+
+    watch: {
+      mimes() {
+        this.initMimes()
+      }
+    },
+
+    methods: {
+
+      onLabelClick() {
+        this.$nextTick(() => {
+          this.focused = true
+          this.$refs.inputComponent.focus()
+        })
+      },
+
+      initMimes() {
+        let mimes = this.mimes.split(', ')
+        this.options.mimes = {}
+        mimes.forEach((mime) => this.options.mimes[mime] = config.mimes[mime] || null)
+      },
+
+      onSelectorClick() {
+        this.$nextTick(() => {
+          return this.$refs.inputComponent.click()
+        })
+      },
+
+      onFileSelected($event) {
+        let event = $event || window.event, target = event.target || event.dataTransfer,
+          file = target.files[0] || null
+        return this.checkFile(file) ? (this.file = file) && this.updateValue() : this.$emit('error')
+      },
+
+      humanizeSize(size) {
+        if (size / 1000 < 1000)
+          return Number((size / 1000).toFixed(1)) + ' Ko'
+        if (size / 1000 / 1000 < 1000)
+          return Number((size / 1000 / 1000).toFixed(1)) + ' Mo'
+        return Number((size / 1000 / 1000 / 1000).toFixed(1)) + ' Go'
+      },
+
+      updateValue(del = false) {
+        if (del) {
+          this.file = null
+          this.$forceUpdate()
+        }
+        this.$emit('input', this.file)
+      },
+
+      checkMimeType(mime) {
+        return mime && this.options.mimes
+          ? Object.keys(this.options.mimes).find(key => Array.isArray(this.options.mimes[key]) ? this.options.mimes[key].includes(mime) : this.options.mimes[key] === mime)
+            ? true
+            : this.showError ? this.showErrorMessage('mime') : false
+          : false
+      },
+
+      checkFile(file) {
+        return file === null ? false : this.checkMimeType(file.type)
+      },
+
+      showErrorMessage(type) {
+        let text = type === 'mime' ? "Le format de fichier n'est pas autorisé" : "Une erreur est survenue"
+        return (swal.fire({ text, icon: 'error', showConfirmButton: false }) || true) && false
+      },
+
+      hasSlot(name = 'default') {
+        return !!this.$slots[name] || !!this.$scopedSlots[name];
+      }
     }
+  }
 </script>
 
 <style lang="scss" scoped>

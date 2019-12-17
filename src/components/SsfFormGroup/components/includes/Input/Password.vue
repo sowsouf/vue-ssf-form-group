@@ -1,6 +1,6 @@
 <template>
   <div class="ssf-input-container ssf-form-password">
-    <label :class="{active}" v-if="label" @click="onLabelClick">
+    <label :class="{active}" v-if="label  && !placeholder" @click="onLabelClick">
       <ssf-icon :type="$parent.iconType" :icon="$parent.icon" :solid="$parent.solid" :regular="$parent.regular"
                 :brand="$parent.brand" :light="$parent.light" :normal="$parent.normal" :outlined="$parent.outlined"
                 :rounded="$parent.rounded" :filled="$parent.filled" :twoTone="$parent.twoTone" :sharp=$parent.sharp
