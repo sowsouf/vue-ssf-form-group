@@ -30,77 +30,77 @@
 
 <script>
 
-    import SsfIcon from 'ssf-icon'
+  import SsfIcon from 'ssf-icon'
 
-    export default {
-        name: "SsfInputNumber",
+  export default {
+    name: "SsfInputNumber",
 
-        components: {
-            SsfIcon
-        },
+    components: {
+      SsfIcon
+    },
 
-        props: {
-            /* COMMONS */
-            name      : { type: String, required: true },
-            label     : { type: String, required: false },
-            value     : { required: false, default: null },
-            required  : { type: Boolean, required: false, default: false },
-            inputClass: { type: String, required: false, default: '' },
+    props: {
+      /* COMMONS */
+      name      : { type: String, required: true },
+      label     : { type: String, required: false },
+      value     : { required: false, default: null },
+      required  : { type: Boolean, required: false, default: false },
+      inputClass: { type: String, required: false, default: '' },
 
-            /* INPUT */
-            type        : { type: String, required: false, default: 'text' },
-            disabled    : { type: Boolean, required: false, default: false },
-            placeholder : { type: Boolean, required: false, default: false },
-            autocomplete: { required: false, default: false },
-            step        : { type: Number, required: false, default: 1 },
-            min         : { type: Number, required: false, default: null },
-            max         : { type: Number, required: false, default: null },
+      /* INPUT */
+      type        : { type: String, required: false, default: 'text' },
+      disabled    : { type: Boolean, required: false, default: false },
+      placeholder : { type: Boolean, required: false, default: false },
+      autocomplete: { required: false, default: false },
+      step        : { type: Number, required: false, default: 1 },
+      min         : { type: Number, required: false, default: null },
+      max         : { type: Number, required: false, default: null },
 
-        },
+    },
 
-        computed: {
-            active() {
-                return this.focused || this.value || this.formatted === 0
-            },
+    computed: {
+      active() {
+        return this.focused || this.value || this.formatted === 0
+      },
 
-            formatted() {
-                return this.format(this.value)
-            }
-        },
+      formatted() {
+        return this.format(this.value)
+      }
+    },
 
-        data() {
-            return {
-                focused: false,
-            }
-        },
+    data() {
+      return {
+        focused: false,
+      }
+    },
 
-        methods: {
+    methods: {
 
-            onLabelClick() {
-                this.$nextTick(() => {
-                    this.focused = true
-                    this.$refs.inputComponent.focus()
-                })
-            },
+      onLabelClick() {
+        this.$nextTick(() => {
+          this.focused = true
+          this.$refs.inputComponent.focus()
+        })
+      },
 
-            format(value) {
-                return (Math.round(value) === value ? parseInt(value) : parseFloat(value))
-            },
+      format(value) {
+        return (Math.round(value) === value ? parseInt(value) : parseFloat(value))
+      },
 
-            updateValue(direction = null) {
-                let value = this.format(this.value)
-                value = Number.isNaN(value) ? 0 : value
-                if (direction === 1 && ((this.max && value + this.step <= this.max) || !this.max))
-                    this.$emit('input', value + this.step)
-                else if (direction === -1 && ((this.min && value - this.step >= this.min) || !this.min))
-                    this.$emit('input', value - this.step)
-                else
-                    this.$nextTick(() => {
-                        this.$emit('input', this.format(this.$refs.inputComponent.value))
-                    })
-            }
-        }
+      updateValue(direction = null) {
+        let value = this.format(this.value)
+        value = Number.isNaN(value) ? Number.isNaN(this.min) ? 0 : this.min : value
+        if (direction === 1 && ((this.max && value + this.step <= this.max) || !this.max))
+          this.$emit('input', value + this.step)
+        else if (direction === -1 && ((this.min && value - this.step >= this.min) || !this.min))
+          this.$emit('input', value - this.step)
+        else
+          this.$nextTick(() => {
+            this.$emit('input', this.format(this.$refs.inputComponent.value))
+          })
+      }
     }
+  }
 </script>
 
 <style scoped>
