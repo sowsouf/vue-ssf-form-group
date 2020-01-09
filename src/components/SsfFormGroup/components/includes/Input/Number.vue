@@ -84,12 +84,14 @@
       },
 
       format(value) {
+        if (value === null)
+          return 0
         value = !value.includes(',') || (value).toString().split(',').length > 1 ? value : parseInt(`${value}00`)
         return (Math.round(value) === value ? parseInt(value) : parseFloat(value))
       },
 
       updateValue(direction = null) {
-        let value = this.format((this.value).toString().replace('.', ','))
+        let value = this.format((this.value ? this.value : 0).toString().replace('.', ','))
         value = Number.isNaN(value) ? Number.isNaN(this.min) ? 0 : this.min : value
         if (direction === 1 && ((this.max && value + this.step <= this.max) || !this.max))
           this.$emit('input', value + this.step)
