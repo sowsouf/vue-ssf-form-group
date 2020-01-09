@@ -84,8 +84,9 @@
       },
 
       format(value) {
-        if (value === null)
-          return 0
+        if (!value)
+          return 0;
+        value = value.toString()
         value = !value.includes(',') || (value).toString().split(',').length > 1 ? value : parseInt(`${value}00`)
         return (Math.round(value) === value ? parseInt(value) : parseFloat(value))
       },
