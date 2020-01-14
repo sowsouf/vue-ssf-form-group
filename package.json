@@ -1,0 +1,45 @@
+{
+  "name": "ssf-form-group",
+  "version": "1.0.0",
+  "description": "A Vue.js component for html input",
+  "author": "Sofiane Akbly <sofiane.akbly@gmail.com>",
+  "private": true,
+  "main": "./dist/vue-ssf-form-group.common.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --target lib --name vue-ssf-form-group src/main.js",
+    "postversion": "git push origin dev && git push --tags && upload-modules ssf-form-group SsfFormGroup"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "ssf-icon": "git+https://github.com/sowsouf/vue-ssf-icon.git",
+    "sweetalert2": "^9.5.4",
+    "vue": "^2.6.10",
+    "vue-custom-scrollbar": "^1.1.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-service": "^4.1.2",
+    "fibers": "^4.0.2",
+    "lodash": "latest",
+    "node-sass": "^4.13.0",
+    "sass": "^1.23.3",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "files": [
+    "dist/*"
+  ]
+}
