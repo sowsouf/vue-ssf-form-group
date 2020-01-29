@@ -9,7 +9,7 @@
            :value="parent.value" :class="parent.inputClass" :required="parent.required" :disabled="parent.disabled"
            :placeholder="placeholder" :autocomplete="autocomplete" :step="parent.step" :min="parent.min"
            :max="parent.max" @input="onInput()" @change="$emit('change')" @focusin="focused = true"
-           @focusout="focused = false" ref="inputComponent">
+           @focusout="focused = false" ref="inputComponent" @focus="$emit('focus')">
 
     <div class="ssf-number-control">
       <div class="control control-more" @click="onInput(1)">
