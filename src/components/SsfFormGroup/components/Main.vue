@@ -50,11 +50,13 @@
       inputClass: { type: String | Object, required: false, default: '' },
 
       /* SELECT */
-      select     : { type: Boolean, required: false, default: false },
-      optionItems: { type: Array, required: false },
-      optionField: { type: String, required: false, default: null },
-      optionLabel: { type: String, required: false, default: null },
-      multiple   : { type: Boolean, required: false, default: false },
+      select      : { type: Boolean, required: false, default: false },
+      optionItems : { type: Array, required: false },
+      optionField : { type: String, required: false, default: null },
+      optionLabel : { type: String, required: false, default: null },
+      multiple    : { type: Boolean, required: false, default: false },
+      scrollX     : { type: Boolean, required: false, default: false },
+      selectHeight: { type: Number | String, required: false, default: 350 },
 
       /* INPUT */
       type        : { type: String | Object, required: false, default: 'text' },
