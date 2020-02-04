@@ -18,6 +18,10 @@
                   :value="parent.value">
               {{ parent.optionLabel ? parent.optionItems.find(item => item[parent.optionField] === parent.value)[parent.optionLabel] : parent.value }}
             </span>
+            <span v-if="parent.value && parent.multiple && Array.isArray(parent.value)" :value="parent.value">
+              {{ parent.optionItems.filter(item => parent.value.includes(item[parent.optionField])).map(item => item[parent.optionLabel]).join(', ') }}
+<!--              {{ parent.optionLabel ? parent.optionItems.find(item => item[parent.optionField] === parent.value)[parent.optionLabel] : parent.value }}-->
+            </span>
             <span v-else-if="show.items || !parent.label" class="ssf-select-option-title">Choisir une valeur... {{ parent.required ? '(*)' : '' }}</span>
           </div>
           <div class="ssf-value-container">
