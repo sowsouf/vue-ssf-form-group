@@ -13,7 +13,7 @@
         <vue-custom-scrollbar class="ssf-select-input-container" :class="{open: show.items}"
                               :style="{height: ssfContainerHeight}"
                               :settings="{wheelPropagation: false, suppressScrollX: !this.parent.scrollX}">
-          <div class="ssf-text-container" :class="{open: show.items}" ref="ssfTextContainer">
+          <div class="ssf-text-container" :class="{open: show.items}" ref="ssfTextContainer" :id="parent.name">
             <span v-if="parent.value && parent.multiple === false && !Array.isArray(parent.value)"
                   :value="parent.value">
               {{ parent.optionLabel ? parent.optionItems.find(item => item[parent.optionField] === parent.value)[parent.optionLabel] : parent.value }}
