@@ -18,7 +18,7 @@
                   :value="parent.value">
               {{ parent.optionLabel ? parent.optionItems.find(item => item[parent.optionField] === parent.value)[parent.optionLabel] : parent.value }}
             </span>
-            <span v-if="parent.value && parent.multiple && Array.isArray(parent.value)" :value="parent.value">
+            <span v-else-if="parent.value && parent.multiple && Array.isArray(parent.value) && parent.value.length > 0" :value="parent.value">
               {{ parent.optionItems.filter(item => parent.value.includes(item[parent.optionField])).map(item => item[parent.optionLabel]).join(', ') }}
 <!--              {{ parent.optionLabel ? parent.optionItems.find(item => item[parent.optionField] === parent.value)[parent.optionLabel] : parent.value }}-->
             </span>
