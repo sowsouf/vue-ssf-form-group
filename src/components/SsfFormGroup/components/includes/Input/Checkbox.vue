@@ -7,7 +7,7 @@
              @input="onInput()" @change="$emit('change')" @focusin="focused = true" @focusout="focused = false"
              ref="inputComponent">
 
-      <input-label :label="parent.label" :icon="icon" key="checkbox-label"/>
+      <input-label :label="parent.label" :icon="icon" key="checkbox-label" @focus="$emit('focus')"/>
 
       <span class="slider" :class="{'checked': parent.value}" v-if="switcher"></span>
     </label>

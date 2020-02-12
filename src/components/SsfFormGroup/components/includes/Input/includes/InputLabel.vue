@@ -27,7 +27,7 @@
           return true;
 
         if (this.$parent.$parent.select && this.$parent.$parent.multiple)
-          return false;
+          return Array.isArray(this.$parent.$parent.value) && this.$parent.$parent.value.length > 0;
 
         if (this.$parent.$parent.type === 'number')
           return ((this.$parent.$parent.value || this.$parent.$parent.value === 0) && this.$parent.$parent.value.toString().trim() !== '');

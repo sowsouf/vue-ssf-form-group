@@ -5,11 +5,11 @@
                  key="number-label"/>
 
     <!-- TYPE : NUMBER -->
-    <input class="ssf-form-control" :type="inputType" inputmode="decimal" :id="parent.name" :name="parent.name"
-           :value="parent.value" :class="parent.inputClass" :required="parent.required" :disabled="parent.disabled"
-           :placeholder="placeholder" :autocomplete="autocomplete" :step="parent.step" :min="parent.min"
-           :max="parent.max" @input="onInput()" @change="$emit('change')" @focusin="focused = true"
-           @focusout="focused = false" ref="inputComponent">
+    <input class="ssf-form-control" :type="inputType" :inputmode="parent.inputmode ? 'decimal' : ''" :id="parent.name"
+           :name="parent.name" :value="parent.value" :class="parent.inputClass" :required="parent.required"
+           :disabled="parent.disabled" :placeholder="placeholder" :autocomplete="autocomplete" :step="parent.step"
+           :min="parent.min" :max="parent.max" @input="onInput()" @change="$emit('change')" @focusin="focused = true"
+           @focusout="focused = false" ref="inputComponent" @focus="$emit('focus')">
 
     <div class="ssf-number-control">
       <div class="control control-more" @click="onInput(1)">

@@ -6,7 +6,7 @@
     {{ test }}
 
     <ssf-form-group name="select" v-model="test.select" :select="true" :option-items="items" :multiple="true"
-                    option-field="id" option-label="label" col="col-12" label="Select input"/>
+                    option-field="id" option-label="label" col="col-12" label="Select input" :select-height="200"/>
 
     <ssf-form-group type="hidden" name="hidden" v-model="test.text" :required="true" :disabled="false"
                     :placeholder="false" :autocomplete="true"/>
@@ -80,10 +80,76 @@
           field   : null,
           id      : null
         },
-        items: [{ id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" }, {
-          id   : "tata",
-          label: "Valeur tata"
-        }]
+        items: [
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+          { id: "toto", label: "Valeur toto" }, { id: "titi", label: "Valeur titi" },
+          { id: "tata", label: "Valeur tata" }, { id: "tutu", label: "Valeur tutu" },
+        ]
       }
     },
 

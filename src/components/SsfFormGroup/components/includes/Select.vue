@@ -8,13 +8,19 @@
 
       <div class="selector-triangle"></div>
 
-      <div class="ssf-form-control" :class="parent.inputClass">
+      <div class="ssf-form-control" :class="parent.inputClass" :id="parent.name">
 
-        <div class="ssf-select-input-container" :class="{open: show.items}" :style="{height: ssfContainerHeight}">
+        <vue-custom-scrollbar class="ssf-select-input-container" :class="{open: show.items}"
+                              :style="{height: ssfContainerHeight}"
+                              :settings="{wheelPropagation: false, suppressScrollX: !this.parent.scrollX}">
           <div class="ssf-text-container" :class="{open: show.items}" ref="ssfTextContainer">
             <span v-if="parent.value && parent.multiple === false && !Array.isArray(parent.value)"
                   :value="parent.value">
               {{ parent.optionLabel ? parent.optionItems.find(item => item[parent.optionField] === parent.value)[parent.optionLabel] : parent.value }}
+            </span>
+            <span v-else-if="parent.value && parent.multiple && Array.isArray(parent.value) && parent.value.length > 0" :value="parent.value">
+              {{ parent.optionItems.filter(item => parent.value.includes(item[parent.optionField])).map(item => item[parent.optionLabel]).join(', ') }}
+<!--              {{ parent.optionLabel ? parent.optionItems.find(item => item[parent.optionField] === parent.value)[parent.optionLabel] : parent.value }}-->
             </span>
             <span v-else-if="show.items || !parent.label" class="ssf-select-option-title">Choisir une valeur... {{ parent.required ? '(*)' : '' }}</span>
           </div>
@@ -33,7 +39,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </vue-custom-scrollbar>
 
       </div>
     </div>
@@ -44,6 +50,8 @@
 
   import InputLabel from "@/components/SsfFormGroup/components/includes/Input/includes/InputLabel";
   import SsfIcon    from 'ssf-icon'
+
+  import VueCustomScrollbar from 'vue-custom-scrollbar'
 
   export default {
     name: "SsfSelect",
@@ -64,7 +72,8 @@
 
     components: {
       InputLabel,
-      SsfIcon
+      SsfIcon,
+      VueCustomScrollbar
     },
 
     computed: {
@@ -111,7 +120,7 @@
 
       getSsfContainerHeight() {
         let element = this.$refs.ssfValueList
-        return element && element.clientHeight > 0 ? `${element.clientHeight + this.$refs.ssfTextContainer.clientHeight}px` : 'inherit';
+        return element && element.clientHeight > 0 ? `${Math.min(this.parent.selectHeight, element.clientHeight + this.$refs.ssfTextContainer.clientHeight)}px` : 'inherit';
       },
 
       toggleShowItems() {
