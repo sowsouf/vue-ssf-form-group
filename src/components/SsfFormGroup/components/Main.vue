@@ -70,12 +70,13 @@
       inline: { type: Boolean, required: false, default: false },
 
       /* NUMBER */
-      step: { type: Number | String, required: false, default: 1 },
-      min : { type: Number | String, required: false, default: null },
-      max : { type: Number | String, required: false, default: null },
+      step     : { type: Number | String, required: false, default: 1 },
+      min      : { type: Number | String, required: false, default: null },
+      max      : { type: Number | String, required: false, default: null },
+      inputmode: { type: Boolean | String, required: false, default: false },
 
       /* DATE */
-      format: { type: String, required: false, default: 'DD/MM/YYYY' },
+      format   : { type: String, required: false, default: 'DD/MM/YYYY' },
 
       /* FILE */
       showError: { type: Boolean, required: false, default: true },
