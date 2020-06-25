@@ -33,6 +33,15 @@
       }
     },
 
+    watch: {
+      parent: {
+        handler(val) {
+          // this.resetCommentInput();
+        },
+        deep: true
+      }
+    },
+
     computed: {
 
       icon() {

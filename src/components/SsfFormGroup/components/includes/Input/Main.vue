@@ -123,7 +123,7 @@
     watch: {
       icon() {
         this.initIcon()
-      }
+      },
     },
 
     data() {

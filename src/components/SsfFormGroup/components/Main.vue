@@ -51,9 +51,10 @@
 
       /* SELECT */
       select      : { type: Boolean, required: false, default: false },
-      optionItems : { type: Array, required: false },
+      optionItems : { type: Array | Object, required: false },
       optionField : { type: String, required: false, default: null },
       optionLabel : { type: String, required: false, default: null },
+      optionGroup : { type: Boolean, required: false, default: false },
       multiple    : { type: Boolean, required: false, default: false },
       scrollX     : { type: Boolean, required: false, default: false },
       selectHeight: { type: Number | String, required: false, default: 350 },
@@ -76,7 +77,7 @@
       inputmode: { type: Boolean | String, required: false, default: false },
 
       /* DATE */
-      format   : { type: String, required: false, default: 'DD/MM/YYYY' },
+      format: { type: String, required: false, default: 'DD/MM/YYYY' },
 
       /* FILE */
       showError: { type: Boolean, required: false, default: true },
