@@ -8,7 +8,7 @@
     <input class="ssf-form-control" :type="inputType" :id="parent.name" :name="parent.name" :value="parent.value"
            :class="parent.inputClass" :required="parent.required" :disabled="parent.disabled" :placeholder="placeholder"
            :autocomplete="autocomplete" @input="onInput()" @change="$emit('change')" @focusin="focused = true"
-           @focusout="focused = false" ref="inputComponent">
+           @focusout="focused = false" ref="inputComponent" @focus="$emit('focus')">
 
     <span class="ssf-password-toggle" @click="toggleShow">
       <ssf-icon icon="eye" :solid="true" v-if="!show"/>

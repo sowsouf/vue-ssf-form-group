@@ -220,6 +220,7 @@
       },
 
       run() {
+        if (this.value) this.current.day = this.helpers.moment(this.value, this.$parent.format)
         this.current.day = this.current.day || this.helpers.moment()
         this.current.month = this.current.day.month()
         this.current.year = this.current.day.year()

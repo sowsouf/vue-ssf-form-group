@@ -1,6 +1,6 @@
 {
   "name": "ssf-form-group",
-  "version": "1.0.0",
+  "version": "2.1.6",
   "description": "A Vue.js component for html input",
   "author": "Sofiane Akbly <sofiane.akbly@gmail.com>",
   "private": true,
@@ -24,7 +24,7 @@
     "@vue/cli-service": "^4.1.2",
     "fibers": "^4.0.2",
     "lodash": "latest",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "sass": "^1.23.3",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",

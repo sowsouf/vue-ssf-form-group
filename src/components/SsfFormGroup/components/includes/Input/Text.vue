@@ -8,7 +8,7 @@
     <input class="ssf-form-control" :type="parent.type" :id="parent.name" :name="parent.name" :value="parent.value"
            :class="parent.inputClass" :inputmode="parent.type" :required="parent.required" :disabled="parent.disabled"
            :placeholder="placeholder" :autocomplete="autocomplete" @input="onInput()" @change="$emit('change')"
-           @focusin="focused = true" @focusout="focused = false" ref="inputComponent">
+           @focusin="focused = true" @focusout="focused = false" ref="inputComponent" @focus="$emit('focus')">
 
   </div>
 </template>

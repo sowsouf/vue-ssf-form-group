@@ -1,27 +1,35 @@
 <template>
   <!-- TYPE : DEFAULT -->
-  <ssf-input-text @input="onInput" ref="inputComponent" v-if="isDefault"/>
+  <ssf-input-text @input="onInput" ref="inputComponent" v-if="isDefault" @focus="$emit('focus')"
+                  @change="$emit('change')"/>
 
   <!-- TYPE : PASSWORD -->
-  <ssf-input-password @input="onInput" ref="inputComponent" v-else-if="type === 'password'"/>
+  <ssf-input-password @input="onInput" ref="inputComponent" v-else-if="type === 'password'" @focus="$emit('focus')"
+                      @change="$emit('change')"/>
 
   <!-- TYPE : NUMBER -->
-  <ssf-input-number @input="onInput" ref="inputComponent" v-else-if="type === 'number'"/>
+  <ssf-input-number @input="onInput" ref="inputComponent" v-else-if="type === 'number'" @focus="$emit('focus')"
+                    @change="$emit('change')"/>
 
   <!-- TYPE : CHECKBOX -->
-  <ssf-input-checkbox @input="onInput" ref="inputComponent" v-else-if="type === 'checkbox'"/>
+  <ssf-input-checkbox @input="onInput" ref="inputComponent" v-else-if="type === 'checkbox'" @focus="$emit('focus')"
+                      @change="$emit('change')"/>
 
   <!-- TYPE : SWITCH -->
-  <ssf-input-checkbox @input="onInput" ref="inputComponent" v-else-if="type === 'switch'" :switcher="true"/>
+  <ssf-input-checkbox @input="onInput" ref="inputComponent" v-else-if="type === 'switch'" :switcher="true"
+                      @focus="$emit('focus')" @change="$emit('change')"/>
 
   <!-- TYPE : RADIO -->
-  <ssf-input-radio @input="onInput" ref="inputComponent" v-else-if="type === 'radio'"/>
+  <ssf-input-radio @input="onInput" ref="inputComponent" v-else-if="type === 'radio'" @focus="$emit('focus')"
+                   @change="$emit('change')"/>
 
   <!-- TYPE : DATE -->
-  <ssf-input-date @input="onInput" ref="inputComponent" v-else-if="type === 'date'"/>
+  <ssf-input-date @input="onInput" ref="inputComponent" v-else-if="type === 'date'" @focus="$emit('focus')"
+                  @change="$emit('change')"/>
 
   <!-- TYPE : TIME -->
-  <ssf-input-time @input="onInput" ref="inputComponent" v-else-if="type === 'time'"/>
+  <ssf-input-time @input="onInput" ref="inputComponent" v-else-if="type === 'time'" @focus="$emit('focus')"
+                  @change="$emit('change')"/>
 
   <!-- TYPE : FILE -->
   <ssf-input-file @input="onInput" ref="inputComponent" v-else-if="type === 'file'" :mimes="mimes">
@@ -115,7 +123,7 @@
     watch: {
       icon() {
         this.initIcon()
-      }
+      },
     },
 
     data() {

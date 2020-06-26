@@ -8,7 +8,7 @@
       <input class="ssf-form-control" type="radio" :id="parent.name" :name="parent.name" :value="value(item)"
              :class="{checked: isChecked(item, parent.value)}" :required="parent.required" :disabled="parent.disabled"
              :checked="isChecked(item, parent.value)" @change="$emit('change')" @input="onInput(item)"
-             ref="inputComponent">&nbsp;<span>{{ item[parent.field] || item }}</span>
+             ref="inputComponent" @focus="$emit('focus')">&nbsp;<span>{{ item[parent.field] || item }}</span>
     </label>
   </div>
 </template>

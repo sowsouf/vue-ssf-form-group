@@ -3,12 +3,13 @@
   <div :class="`${row ? 'row ' : ''}${col || ''}`">
     <div :class="containerClass">
 
-      <ssf-select @input="onInput" v-if="select"/>
+      <ssf-select @input="onInput" v-if="select" @focus="$emit('focus')" @change="$emit('change')"/>
 
       <ssf-input :type="type" :label="label" :name="name" :value="value" :required="required" :disabled="disabled"
                  :items="optionItems" :field="optionField" :placeholder="placeholder" :autocomplete="autocomplete"
                  :step="step" :min="min" :max="max" @input="onInput" :inline="inline" ref="input"
-                 :input-class="inputClass" :show-error="showError" :icon="icon" v-else>
+                 :input-class="inputClass" :show-error="showError" :icon="icon" @focus="$emit('focus')"
+                 @change="$emit('change')" v-else>
         <slot name="label" slot="label" v-if="hasSlot('label')"/>
         <slot name="file-info" slot="file-info" v-if="hasSlot('file-info')"/>
         <slot name="selector" slot="selector" v-if="hasSlot('selector')"/>
@@ -49,11 +50,14 @@
       inputClass: { type: String | Object, required: false, default: '' },
 
       /* SELECT */
-      select     : { type: Boolean, required: false, default: false },
-      optionItems: { type: Array, required: false },
-      optionField: { type: String, required: false, default: null },
-      optionLabel: { type: String, required: false, default: null },
-      multiple   : { type: Boolean, required: false, default: false },
+      select      : { type: Boolean, required: false, default: false },
+      optionItems : { type: Array | Object, required: false },
+      optionField : { type: String, required: false, default: null },
+      optionLabel : { type: String, required: false, default: null },
+      optionGroup : { type: Boolean, required: false, default: false },
+      multiple    : { type: Boolean, required: false, default: false },
+      scrollX     : { type: Boolean, required: false, default: false },
+      selectHeight: { type: Number | String, required: false, default: 350 },
 
       /* INPUT */
       type        : { type: String | Object, required: false, default: 'text' },
@@ -67,9 +71,10 @@
       inline: { type: Boolean, required: false, default: false },
 
       /* NUMBER */
-      step: { type: Number | String, required: false, default: 1 },
-      min : { type: Number | String, required: false, default: null },
-      max : { type: Number | String, required: false, default: null },
+      step     : { type: Number | String, required: false, default: 1 },
+      min      : { type: Number | String, required: false, default: null },
+      max      : { type: Number | String, required: false, default: null },
+      inputmode: { type: Boolean | String, required: false, default: false },
 
       /* DATE */
       format: { type: String, required: false, default: 'DD/MM/YYYY' },
