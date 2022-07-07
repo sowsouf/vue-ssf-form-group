@@ -12,7 +12,7 @@
     "postversion": "git push origin dev && git push --tags && upload-modules ssf-form-group SsfFormGroup"
   },
   "dependencies": {
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.27",
     "ssf-icon": "git+https://github.com/sowsouf/vue-ssf-icon.git",
     "sweetalert2": "^9.5.4",
