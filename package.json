@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "ssf-icon": "git+https://github.com/sowsouf/vue-ssf-icon.git",
     "sweetalert2": "^9.5.4",
     "vue": "^2.6.10",
